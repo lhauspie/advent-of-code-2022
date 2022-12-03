@@ -8,13 +8,26 @@ import com.lhauspie.adventofcode.model.Quantity;
 import java.util.Scanner;
 
 public class PuzzleResolver {
-  public static Quantity resolve(Scanner scanner) throws EmptyBoatException {
+
+  public static Quantity resolveFirstPuzzle(Scanner scanner) throws EmptyBoatException {
     Boat boat = new Boat();
 
     while (scanner.hasNextLine()) {
       boat.add(nextElf(scanner));
     }
     return boat.getTopOneElfWithMoreCalories().getCarriedCalories();
+  }
+
+  public static Quantity resolveSecondPuzzle(Scanner scanner) throws EmptyBoatException {
+    Boat boat = new Boat();
+
+    while (scanner.hasNextLine()) {
+      boat.add(nextElf(scanner));
+    }
+    return boat.getTopThreeElvesWithMoreCalories().stream()
+            .map(elf -> elf.getCarriedCalories())
+            .reduce((quantity, quantity2) -> quantity.add(quantity2))
+            .get();
   }
 
   private static Elf nextElf(Scanner scanner) {
