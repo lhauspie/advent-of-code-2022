@@ -2,17 +2,17 @@ package com.lhauspie.adventofcode.model;
 
 public class Elf {
 
-  private int carriedCalories = 0;
+  private Quantity carriedCalories = Quantity.of(0);
 
-  public int getCarriedCalories() {
+  public Quantity getCarriedCalories() {
     return carriedCalories;
   }
 
-  public void count(int calories) {
-    this.carriedCalories += calories;
+  public void count(Quantity calories) {
+    this.carriedCalories = this.carriedCalories.add(calories);
   }
 
   public boolean carriesMoreCaloriesThan(Elf other) {
-    return other != null && this.getCarriedCalories() > other.getCarriedCalories();
+    return other != null && this.getCarriedCalories().moreThan(other.getCarriedCalories());
   }
 }

@@ -2,18 +2,22 @@ package com.lhauspie.adventofcode.model;
 
 public class Boat {
 
-  Elf elf;
+  private Elf elfWithMoreCalories;
 
-  public Elf findTheGoodElf() throws EmptyBoatException {
-    if (elf == null) {
+  public Elf getElfWithMoreCalories() throws EmptyBoatException {
+    if (boatIsEmpty()) {
       throw new EmptyBoatException();
     }
-    return elf;
+    return elfWithMoreCalories;
   }
 
   public void add(Elf elf) {
-    if (this.elf == null || elf.carriesMoreCaloriesThan(this.elf)) {
-      this.elf = elf;
+    if (boatIsEmpty() || elf.carriesMoreCaloriesThan(elfWithMoreCalories)) {
+      elfWithMoreCalories = elf;
     }
+  }
+
+  private boolean boatIsEmpty() {
+    return elfWithMoreCalories == null;
   }
 }
