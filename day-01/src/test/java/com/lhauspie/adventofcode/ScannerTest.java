@@ -9,9 +9,9 @@ import java.util.Scanner;
 
 public class ScannerTest {
 
-    @Test
-    public void scannerShouldBeAbleToReadInputFile() throws FileNotFoundException {
-        Scanner scanner = new Scanner(new File("src/test/resources/input_test.txt"));
-        Assertions.assertEquals(scanner.nextInt(), 7569);
-    }
+  @Test
+  public void scannerShouldBeAbleToReadInputFile() throws FileNotFoundException {
+    Scanner scanner = new Scanner(new File("src/test/resources/input_test.txt"));
+    Assertions.assertEquals(scanner.nextInt(), 7569);
+  }
 }

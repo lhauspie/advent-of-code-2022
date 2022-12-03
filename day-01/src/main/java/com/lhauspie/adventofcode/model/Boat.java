@@ -1,7 +1,17 @@
 package com.lhauspie.adventofcode.model;
 
 public class Boat {
-    public void findTheGoodElf() throws EmptyBoatException {
-        throw new EmptyBoatException();
+
+  Elf elf;
+
+  public Elf findTheGoodElf() throws EmptyBoatException {
+    if (elf == null) {
+      throw new EmptyBoatException();
     }
+    return elf;
+  }
+
+  public void add(Elf elf) {
+    this.elf = elf;
+  }
 }
