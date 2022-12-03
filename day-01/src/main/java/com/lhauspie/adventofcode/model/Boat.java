@@ -29,7 +29,8 @@ public class Boat {
   }
 
   public List<Elf> getTopThreeElves() {
-    elves.sort((o1, o2) -> Integer.compare(o2.getCarriedCalories().getValue(), o1.getCarriedCalories().getValue()));
-    return elves.stream().limit(3).collect(Collectors.toList());
+    return elves.stream()
+            .sorted((o1, o2) -> o2.getCarriedCalories().compareTo(o1.getCarriedCalories()))
+            .limit(3).collect(Collectors.toList());
   }
 }

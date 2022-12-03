@@ -2,7 +2,7 @@ package com.lhauspie.adventofcode.model;
 
 import java.util.Objects;
 
-public class Quantity {
+public class Quantity implements Comparable<Quantity>{
   private int value;
 
   private Quantity(int value) {
@@ -36,5 +36,10 @@ public class Quantity {
   @Override
   public int hashCode() {
     return Objects.hash(value);
+  }
+
+  @Override
+  public int compareTo(Quantity o) {
+    return Integer.compare(this.getValue(), o.getValue());
   }
 }
