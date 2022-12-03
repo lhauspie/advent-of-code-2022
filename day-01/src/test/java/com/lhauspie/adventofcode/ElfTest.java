@@ -11,4 +11,11 @@ public class ElfTest {
         var elf = new Elf();
         Assertions.assertEquals(0, elf.getCarriedCalories());
     }
+
+    @Test
+    public void elfCounting1000CaloriesShouldCarry1000Calories() {
+        var elf = new Elf();
+        elf.count(1000);
+        Assertions.assertEquals(1000, elf.getCarriedCalories());
+    }
 }
