@@ -13,6 +13,6 @@ public class Elf {
     }
 
     public boolean carriesMoreCaloriesThan(Elf other) {
-        return true;
+        return this.getCarriedCalories() > other.getCarriedCalories();
     }
 }
