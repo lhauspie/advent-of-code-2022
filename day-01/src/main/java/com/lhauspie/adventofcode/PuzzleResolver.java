@@ -14,7 +14,7 @@ public class PuzzleResolver {
     while (scanner.hasNextLine()) {
       boat.add(nextElf(scanner));
     }
-    return boat.getElfWithMoreCalories().getCarriedCalories();
+    return boat.getTopOneElfWithMoreCalories().getCarriedCalories();
   }
 
   private static Elf nextElf(Scanner scanner) {

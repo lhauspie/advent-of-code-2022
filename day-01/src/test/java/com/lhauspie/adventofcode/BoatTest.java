@@ -14,7 +14,7 @@ public class BoatTest {
   @Test
   public void findingTheGoodElfInEmptyBoatShouldThrowsAnException() {
     var boat = new Boat();
-    Assertions.assertThrows(EmptyBoatException.class, () -> boat.getElfWithMoreCalories());
+    Assertions.assertThrows(EmptyBoatException.class, () -> boat.getTopOneElfWithMoreCalories());
   }
 
   @Test
@@ -23,7 +23,7 @@ public class BoatTest {
     var boat = new Boat();
     Elf elf = new Elf();
     boat.add(elf);
-    Assertions.assertTrue(elf == boat.getElfWithMoreCalories());
+    Assertions.assertTrue(elf == boat.getTopOneElfWithMoreCalories());
   }
 
   @Test
@@ -39,7 +39,13 @@ public class BoatTest {
     elfWith200Calories.count(Quantity.of(200));
     boat.add(elfWith200Calories);
 
-    Assertions.assertEquals(elfWith3000Calories.getCarriedCalories(), boat.getElfWithMoreCalories().getCarriedCalories());
+    Assertions.assertEquals(elfWith3000Calories.getCarriedCalories(), boat.getTopOneElfWithMoreCalories().getCarriedCalories());
+  }
+
+  @Test
+  public void findingTheTopThreeElvesInEmptyBoatShouldThrowsAnException() {
+    var boat = new Boat();
+    Assertions.assertThrows(EmptyBoatException.class, () -> boat.getTopThreeElvesWithMoreCalories());
   }
 
   @Test
@@ -67,7 +73,7 @@ public class BoatTest {
     elfWith200Calories.count(Quantity.of(200));
     boat.add(elfWith200Calories);
 
-    List<Elf> topThreeElvesWithMoreCalories = boat.getTopThreeElves();
+    List<Elf> topThreeElvesWithMoreCalories = boat.getTopThreeElvesWithMoreCalories();
     Assertions.assertEquals(3, topThreeElvesWithMoreCalories.size());
     Assertions.assertEquals(10000, topThreeElvesWithMoreCalories.get(0).getCarriedCalories().getValue());
     Assertions.assertEquals(3000, topThreeElvesWithMoreCalories.get(1).getCarriedCalories().getValue());
