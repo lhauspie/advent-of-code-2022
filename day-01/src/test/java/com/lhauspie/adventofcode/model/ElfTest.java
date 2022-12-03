@@ -1,7 +1,5 @@
-package com.lhauspie.adventofcode;
+package com.lhauspie.adventofcode.model;
 
-import com.lhauspie.adventofcode.model.Elf;
-import com.lhauspie.adventofcode.model.Quantity;
 import org.junit.jupiter.api.Assertions;
 import org.junit.jupiter.api.Test;
 

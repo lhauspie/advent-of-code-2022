@@ -25,9 +25,9 @@ public class PuzzleResolver {
       boat.add(nextElf(scanner));
     }
     return boat.getTopThreeElvesWithMoreCalories().stream()
-            .map(elf -> elf.getCarriedCalories())
-            .reduce((quantity, quantity2) -> quantity.add(quantity2))
-            .get();
+        .map(elf -> elf.getCarriedCalories())
+        .reduce((quantity, quantity2) -> quantity.add(quantity2))
+        .get();
   }
 
   private static Elf nextElf(Scanner scanner) {

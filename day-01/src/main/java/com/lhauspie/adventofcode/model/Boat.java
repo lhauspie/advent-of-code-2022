@@ -13,8 +13,9 @@ public class Boat {
       throw new EmptyBoatException();
     }
     return elves.stream()
-            .sorted((o1, o2) -> o2.getCarriedCalories().compareTo(o1.getCarriedCalories()))
-            .findFirst().get();
+        .sorted((o1, o2) -> o2.getCarriedCalories().compareTo(o1.getCarriedCalories()))
+        .findFirst()
+        .get();
   }
 
   public void add(Elf elf) {
@@ -30,7 +31,8 @@ public class Boat {
       throw new EmptyBoatException();
     }
     return elves.stream()
-            .sorted((o1, o2) -> o2.getCarriedCalories().compareTo(o1.getCarriedCalories()))
-            .limit(3).collect(Collectors.toList());
+        .sorted((o1, o2) -> o2.getCarriedCalories().compareTo(o1.getCarriedCalories()))
+        .limit(3)
+        .collect(Collectors.toList());
   }
 }

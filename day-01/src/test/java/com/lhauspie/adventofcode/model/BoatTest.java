@@ -1,9 +1,5 @@
-package com.lhauspie.adventofcode;
+package com.lhauspie.adventofcode.model;
 
-import com.lhauspie.adventofcode.model.Boat;
-import com.lhauspie.adventofcode.model.Elf;
-import com.lhauspie.adventofcode.model.EmptyBoatException;
-import com.lhauspie.adventofcode.model.Quantity;
 import org.junit.jupiter.api.Assertions;
 import org.junit.jupiter.api.Test;
 
@@ -27,8 +23,9 @@ public class BoatTest {
   }
 
   @Test
-  public void findingTheGoodElfInBoatWithOneElfWith3000CaloriesAndAnotherOneWith200CaloriesShouldReturnTheElfWith3000()
-      throws EmptyBoatException {
+  public void
+      findingTheGoodElfInBoatWithOneElfWith3000CaloriesAndAnotherOneWith200CaloriesShouldReturnTheElfWith3000()
+          throws EmptyBoatException {
     var boat = new Boat();
 
     Elf elfWith3000Calories = new Elf();
@@ -39,13 +36,16 @@ public class BoatTest {
     elfWith200Calories.count(Quantity.of(200));
     boat.add(elfWith200Calories);
 
-    Assertions.assertEquals(elfWith3000Calories.getCarriedCalories(), boat.getTopOneElfWithMoreCalories().getCarriedCalories());
+    Assertions.assertEquals(
+        elfWith3000Calories.getCarriedCalories(),
+        boat.getTopOneElfWithMoreCalories().getCarriedCalories());
   }
 
   @Test
   public void findingTheTopThreeElvesInEmptyBoatShouldThrowsAnException() {
     var boat = new Boat();
-    Assertions.assertThrows(EmptyBoatException.class, () -> boat.getTopThreeElvesWithMoreCalories());
+    Assertions.assertThrows(
+        EmptyBoatException.class, () -> boat.getTopThreeElvesWithMoreCalories());
   }
 
   @Test
@@ -75,8 +75,11 @@ public class BoatTest {
 
     List<Elf> topThreeElvesWithMoreCalories = boat.getTopThreeElvesWithMoreCalories();
     Assertions.assertEquals(3, topThreeElvesWithMoreCalories.size());
-    Assertions.assertEquals(10000, topThreeElvesWithMoreCalories.get(0).getCarriedCalories().getValue());
-    Assertions.assertEquals(3000, topThreeElvesWithMoreCalories.get(1).getCarriedCalories().getValue());
-    Assertions.assertEquals(500, topThreeElvesWithMoreCalories.get(2).getCarriedCalories().getValue());
+    Assertions.assertEquals(
+        10000, topThreeElvesWithMoreCalories.get(0).getCarriedCalories().getValue());
+    Assertions.assertEquals(
+        3000, topThreeElvesWithMoreCalories.get(1).getCarriedCalories().getValue());
+    Assertions.assertEquals(
+        500, topThreeElvesWithMoreCalories.get(2).getCarriedCalories().getValue());
   }
 }

@@ -2,7 +2,7 @@ package com.lhauspie.adventofcode.model;
 
 import java.util.Objects;
 
-public class Quantity implements Comparable<Quantity>{
+public class Quantity implements Comparable<Quantity> {
   private int value;
 
   private Quantity(int value) {
