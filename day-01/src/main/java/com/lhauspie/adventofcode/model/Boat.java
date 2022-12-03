@@ -12,6 +12,8 @@ public class Boat {
   }
 
   public void add(Elf elf) {
-    this.elf = elf;
+    if (this.elf == null || elf.carriesMoreCaloriesThan(this.elf)) {
+      this.elf = elf;
+    }
   }
 }
