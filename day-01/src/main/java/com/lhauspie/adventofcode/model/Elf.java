@@ -11,4 +11,8 @@ public class Elf {
     public void count(int calories) {
         this.calories += calories;
     }
+
+    public boolean carriesMoreCaloriesThan(Elf other) {
+        return true;
+    }
 }
