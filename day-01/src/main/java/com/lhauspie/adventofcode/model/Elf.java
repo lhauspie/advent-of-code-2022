@@ -2,14 +2,14 @@ package com.lhauspie.adventofcode.model;
 
 public class Elf {
 
-    private int calories = 0;
+    private int carriedCalories = 0;
 
     public int getCarriedCalories() {
-        return calories;
+        return carriedCalories;
     }
 
     public void count(int calories) {
-        this.calories += calories;
+        this.carriedCalories += calories;
     }
 
     public boolean carriesMoreCaloriesThan(Elf other) {
