@@ -38,4 +38,10 @@ public class PuzzleResolverTest {
         var scanner = new Scanner(puzzleContent);
         Assertions.assertEquals(10000, PuzzleResolver.resolve(scanner).getValue());
     }
+
+    @Test
+    public void puzzleResolverCanResolveTheInputExample() throws EmptyBoatException, FileNotFoundException {
+        var scanner = new Scanner(new File("src/test/resources/input_01_example.txt"));
+        Assertions.assertEquals(24000, PuzzleResolver.resolve(scanner).getValue());
+    }
 }
