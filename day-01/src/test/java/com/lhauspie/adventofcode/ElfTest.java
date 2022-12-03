@@ -55,4 +55,12 @@ public class ElfTest {
 
         Assertions.assertFalse(elfCounting10Calories.carriesMoreCaloriesThan(elfCounting200Calories));
     }
+
+    @Test
+    public void elfCounting10CaloriesDoesntCarryMoreCaloriesThanElfCounting10Calories() {
+        var elfCounting10Calories = new Elf();
+        elfCounting10Calories.count(10);
+
+        Assertions.assertFalse(elfCounting10Calories.carriesMoreCaloriesThan(elfCounting10Calories));
+    }
 }
