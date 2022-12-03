@@ -5,6 +5,8 @@ import com.lhauspie.adventofcode.model.Quantity;
 import org.junit.jupiter.api.Assertions;
 import org.junit.jupiter.api.Test;
 
+import java.io.File;
+import java.io.FileNotFoundException;
 import java.util.Scanner;
 
 public class PuzzleResolverTest {
@@ -21,9 +23,19 @@ public class PuzzleResolverTest {
     public void puzzleResolverCanResolveOneElfInBoat() throws EmptyBoatException {
         var puzzleContent = """
                 10000
+                """;
+        var scanner = new Scanner(puzzleContent);
+        Assertions.assertEquals(Quantity.of(10000), PuzzleResolver.resolve(scanner));
+    }
+
+    @Test
+    public void puzzleResolverCanResolveTwoElvesInBoat() throws EmptyBoatException {
+        var puzzleContent = """
+                1000
+                
                 10000
                 """;
         var scanner = new Scanner(puzzleContent);
-        Assertions.assertEquals(Quantity.of(20000), PuzzleResolver.resolve(scanner));
+        Assertions.assertEquals(10000, PuzzleResolver.resolve(scanner).getValue());
     }
 }

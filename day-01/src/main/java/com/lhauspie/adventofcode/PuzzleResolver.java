@@ -11,12 +11,26 @@ public class PuzzleResolver {
   public static Quantity resolve(Scanner scanner) throws EmptyBoatException {
     Boat boat = new Boat();
 
-    if (scanner.hasNext()) {
-      var elf = new Elf();
-      elf.count(Quantity.of(scanner.nextInt()));
-      elf.count(Quantity.of(scanner.nextInt()));
-      boat.add(elf);
+    while (scanner.hasNextLine()) {
+      boat.add(nextElf(scanner));
     }
     return boat.getElfWithMoreCalories().getCarriedCalories();
+  }
+
+  private static Elf nextElf(Scanner scanner) {
+    var elf = new Elf();
+    var nextLine = scanner.nextLine();
+    boolean keepBuildingElf = true;
+
+    while (!nextLine.isEmpty() && keepBuildingElf) {
+      elf.count(Quantity.of(Integer.valueOf(nextLine)));
+      if (scanner.hasNextLine()) {
+        nextLine = scanner.nextLine();
+      } else {
+        keepBuildingElf = false;
+      }
+    }
+
+    return elf;
   }
 }
