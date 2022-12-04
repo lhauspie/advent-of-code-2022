@@ -11,7 +11,7 @@ public class WrongDecryptor {
             case "A" -> ROCK;
             case "B" -> PAPER;
             case "C" -> SCISSORS;
-            default  -> throw new IllegalArgumentException("encryptedValue not supported : " + encryptedValue);
+            default -> throw new IllegalArgumentException("encryptedValue not supported : " + encryptedValue);
         };
     }
 
@@ -20,7 +20,7 @@ public class WrongDecryptor {
             case "X" -> ROCK;
             case "Y" -> PAPER;
             case "Z" -> SCISSORS;
-            default  -> throw new IllegalArgumentException("encryptedValue not supported : " + encryptedValue);
+            default -> throw new IllegalArgumentException("encryptedValue not supported : " + encryptedValue);
         };
     }
 }

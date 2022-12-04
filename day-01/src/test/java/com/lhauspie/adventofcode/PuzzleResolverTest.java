@@ -32,7 +32,7 @@ public class PuzzleResolverTest {
     public void puzzleResolverCanResolveTwoElvesInBoat() throws EmptyBoatException {
         var puzzleContent = """
                 1000
-                
+                                
                 10000
                 """;
         var scanner = new Scanner(puzzleContent);
