@@ -4,15 +4,21 @@ import java.util.ArrayDeque;
 import java.util.Deque;
 import java.util.stream.Collectors;
 
-public class Buffer {
+/**
+ * This class allows to have a LimitedSizedBuffer as a FIFO.
+ * But the particularity of this Buffer is that if there is an overflow,
+ * the oldest value is removed from it to guarantee we only have the allowed number of element, no more.
+ * Without any exceptions.
+ */
+public class LimitedSizedBuffer {
     private Deque<Character> buffer = new ArrayDeque<>();
-    private int bufferSize = 0;
+    private int bufferSize;
 
-    public Buffer(int bufferSize) {
+    public LimitedSizedBuffer(int bufferSize) {
         this.bufferSize = bufferSize;
     }
 
-    public Buffer fulfill(char nextChar) {
+    public LimitedSizedBuffer fulfill(char nextChar) {
         buffer.addLast(nextChar);
         if (buffer.size() > bufferSize) {
             buffer.pollFirst();

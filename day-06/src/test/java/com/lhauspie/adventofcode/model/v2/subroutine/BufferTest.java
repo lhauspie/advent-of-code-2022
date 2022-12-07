@@ -2,17 +2,19 @@ package com.lhauspie.adventofcode.model.v2.subroutine;
 
 import org.junit.jupiter.api.Test;
 
-import java.util.ArrayDeque;
-import java.util.Deque;
-import java.util.stream.Collectors;
-
 import static org.junit.jupiter.api.Assertions.assertEquals;
 
 public class BufferTest {
 
     @Test
-    public void overflowingBufferShouldDeleteFirstEntries() {
-        Buffer buffer = new Buffer(10);
+    public void emptyBufferShouldReturnEmptyString() {
+        LimitedSizedBuffer buffer = new LimitedSizedBuffer(10);
+        assertEquals("", buffer.toString());
+    }
+
+    @Test
+    public void overflowingBufferShouldDeleteOldestEntries() {
+        LimitedSizedBuffer buffer = new LimitedSizedBuffer(10);
         buffer.fulfill('a');
         buffer.fulfill('b');
         buffer.fulfill('c');

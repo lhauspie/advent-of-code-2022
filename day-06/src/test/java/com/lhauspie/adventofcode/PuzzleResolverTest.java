@@ -1,6 +1,5 @@
 package com.lhauspie.adventofcode;
 
-import com.lhauspie.adventofcode.model.v1.Signal;
 import com.lhauspie.adventofcode.model.v2.subroutine.NoValidMarkerFoundException;
 import org.junit.jupiter.api.Test;
 

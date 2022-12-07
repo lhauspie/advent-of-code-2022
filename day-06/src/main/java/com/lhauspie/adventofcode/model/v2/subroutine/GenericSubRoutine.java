@@ -5,12 +5,12 @@ import com.lhauspie.adventofcode.model.v2.marker.MarkerFactory;
 
 public class GenericSubRoutine implements SubRoutine {
 
-    private Buffer buffer;
+    private LimitedSizedBuffer buffer;
     private boolean markerFound = false;
     private int nbAnalysedChars = 0;
 
     public GenericSubRoutine(int bufferSize) {
-        this.buffer = new Buffer(bufferSize);
+        this.buffer = new LimitedSizedBuffer(bufferSize);
     }
 
     public void analyseNextChar(char nextChar) {
