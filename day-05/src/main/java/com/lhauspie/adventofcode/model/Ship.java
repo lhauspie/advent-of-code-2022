@@ -26,7 +26,7 @@ public class Ship {
     public List<MarkedCrate> getCratesOnTopOfEachStack() {
         List<MarkedCrate> crates = new ArrayList<>();
         for (int i = 1; i <= stacks.size(); i++) {
-            crates.add(stacks.get(Position.of(i)).peek());
+            crates.add(getStack(Position.of(i)).peek());
         }
         return crates;
     }
