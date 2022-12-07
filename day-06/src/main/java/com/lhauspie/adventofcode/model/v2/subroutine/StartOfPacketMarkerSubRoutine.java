@@ -1,11 +1,10 @@
 package com.lhauspie.adventofcode.model.v2.subroutine;
 
-import com.lhauspie.adventofcode.model.v2.marker.MarkerFactory;
 import com.lhauspie.adventofcode.model.v2.marker.StartOfPacketMarker;
 
 public class StartOfPacketMarkerSubRoutine extends GenericSubRoutine {
 
     public StartOfPacketMarkerSubRoutine() {
-        super(StartOfPacketMarker.MARKER_SIZE, input -> MarkerFactory.buildMarkerFrom(input));
+        super(StartOfPacketMarker.MARKER_SIZE);
     }
 }
