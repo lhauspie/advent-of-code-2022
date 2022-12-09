@@ -3,7 +3,10 @@ package com.lhauspie.adventofcode.model.filesystem;
 import com.lhauspie.adventofcode.model.Name;
 import com.lhauspie.adventofcode.model.Size;
 
-import java.util.*;
+import java.util.ArrayList;
+import java.util.HashMap;
+import java.util.List;
+import java.util.Map;
 
 public class Directory {
 

@@ -2,8 +2,6 @@ package com.lhauspie.adventofcode.model;
 
 import org.junit.jupiter.api.Test;
 
-import java.util.Stack;
-
 import static org.junit.jupiter.api.Assertions.assertEquals;
 
 public class CrateMover9001Test {

@@ -1,8 +1,6 @@
 package com.lhauspie.adventofcode;
 
 import com.lhauspie.adventofcode.model.Size;
-import com.lhauspie.adventofcode.model.TerminalParser;
-import org.junit.jupiter.api.Assertions;
 import org.junit.jupiter.api.Test;
 
 import java.util.Scanner;

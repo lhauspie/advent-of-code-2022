@@ -1,6 +1,5 @@
 package com.lhauspie.adventofcode.model;
 
-import com.lhauspie.adventofcode.model.command.*;
 import com.lhauspie.adventofcode.model.filesystem.Directory;
 
 import java.util.Scanner;
@@ -15,18 +14,22 @@ public class TerminalParser {
         }
 
         while (scanner.hasNextLine()) {
-            TerminalLine terminalLine = TerminalLine.of(scanner.nextLine());
-            if (terminalLine.isChangeDirectoryCommand()) {
-                currentDirectory = currentDirectory.cd(terminalLine.asChangeDirectoryCommand().getDirectoryName());
-            }
-            if (terminalLine.isDirectory()) {
-                currentDirectory.add(terminalLine.asDirectory());
-            }
-            if (terminalLine.isFile()) {
-                currentDirectory.add(terminalLine.asFile());
-            }
+            currentDirectory = interpretTerminalLineInCurrentDirectory(TerminalLine.of(scanner.nextLine()), currentDirectory);
         }
 
         return currentDirectory.cd(Name.of("/"));
+    }
+
+    private static Directory interpretTerminalLineInCurrentDirectory(TerminalLine terminalLine, Directory currentDirectory) {
+        if (terminalLine.isChangeDirectoryCommand()) {
+            return currentDirectory.cd(terminalLine.asChangeDirectoryCommand().getDirectoryName());
+        }
+        if (terminalLine.isDirectory()) {
+            currentDirectory.add(terminalLine.asDirectory());
+        }
+        if (terminalLine.isFile()) {
+            currentDirectory.add(terminalLine.asFile());
+        }
+        return currentDirectory;
     }
 }
