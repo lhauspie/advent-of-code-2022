@@ -16,4 +16,13 @@ public class PuzzleResolverTest {
 
         assertEquals(1, PuzzleResolver.resolveFirstPuzzle(new Scanner(input)));
     }
+
+    @Test
+    public void movingRopeLeftTwiceResultsInTwoPositionVisited() {
+        String input = """
+                L 2
+                """;
+
+        assertEquals(2, PuzzleResolver.resolveFirstPuzzle(new Scanner(input)));
+    }
 }

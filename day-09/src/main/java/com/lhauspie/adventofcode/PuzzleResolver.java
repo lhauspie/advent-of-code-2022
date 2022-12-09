@@ -5,7 +5,7 @@ import java.util.Scanner;
 public class PuzzleResolver {
 
     public static int resolveFirstPuzzle(Scanner scanner) {
-        return 1;
+        return Integer.parseInt(scanner.nextLine().split(" ")[1]);
     }
 
     public static int resolveSecondPuzzle(Scanner scanner) {
