@@ -5,7 +5,7 @@ import java.util.Deque;
 
 public class Monkey {
     private Deque<Item> items = new ArrayDeque<>();
-    private Operation operation;
+    private Inspection inspection;
     private Divisible divisible;
     private Monkey monkeyReceiverForTrue;
     private Monkey monkeyReceiverForFalse;
@@ -15,8 +15,8 @@ public class Monkey {
         items.addLast(item);
     }
 
-    public void setOperation(Operation operation) {
-        this.operation = operation;
+    public void setInspection(Inspection inspection) {
+        this.inspection = inspection;
     }
 
     public void setDivisible(Divisible divisible) {
@@ -43,17 +43,17 @@ public class Monkey {
 
     public void playTurn() {
         Item polledItem = items.pollFirst();
-        evaluateNewWorryLevel(polledItem);
         inspect(polledItem);
         throwItem(polledItem);
     }
 
-    private void evaluateNewWorryLevel(Item polledItem) {
-        polledItem.setWorryLevel(operation.evaluateNewWorryLevel(polledItem.getWorryLevel()));
+    public Item getLastCaughtItem() {
+        return items.getLast();
     }
 
-    public Item getLastReceivedItem() {
-        return items.getLast();
+    private void inspect(Item polledItem) {
+        polledItem.inspect(inspection);
+        nbInspectedItems++;
     }
 
     private void throwItem(Item polledItem) {
@@ -62,11 +62,6 @@ public class Monkey {
         } else {
             monkeyReceiverForFalse.catchItem(polledItem);
         }
-    }
-
-    private void inspect(Item polledItem) {
-        polledItem.inspect();
-        nbInspectedItems++;
     }
 
     private boolean stillHaveItems() {

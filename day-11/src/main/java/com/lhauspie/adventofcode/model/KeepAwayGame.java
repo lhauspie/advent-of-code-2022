@@ -5,22 +5,22 @@ import java.util.Arrays;
 import java.util.List;
 
 public class KeepAwayGame {
+    private Owner centralPlayer;
     private List<Monkey> monkeys = new ArrayList<>();
-    private static int ROUND_NUMBER = 20;
     private Long productOfDivisors;
     private int roundNumber;
 
-    public KeepAwayGame(Monkey... monkeys) {
-        this(ROUND_NUMBER, monkeys);
-    }
-
-    public KeepAwayGame(int roundNumber, Monkey... monkeys) {
+    public KeepAwayGame(int roundNumber, Owner centralPlayer, Monkey... monkeys) {
         this.roundNumber = roundNumber;
+        this.centralPlayer = centralPlayer;
+        this.productOfDivisors = calculateProductOfMonkeysDivisors(monkeys);
         for (int i = 0; i < monkeys.length; i++) {
             this.monkeys.add(monkeys[i]);
         }
+    }
 
-        productOfDivisors = Arrays.stream(monkeys)
+    private Long calculateProductOfMonkeysDivisors(Monkey[] monkeys) {
+        return Arrays.stream(monkeys)
                 .map(Monkey::getDivisible)
                 .filter(divisible -> divisible != null)
                 .map(Divisible::getDivisor)
@@ -33,9 +33,8 @@ public class KeepAwayGame {
             for (Monkey monkey : monkeys) {
                 monkey.playRound();
             }
-        }
-        for (var monkey: monkeys) {
-            for (var item : monkey.getItems()) {
+            // shorten worry level after all monkeys play their rounds to avoid Long overflowing
+            for(var item : centralPlayer.getItems()) {
                 item.setWorryLevel(item.getWorryLevel() % productOfDivisors);
             }
         }

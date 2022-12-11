@@ -10,29 +10,28 @@ import java.util.Scanner;
 public class PuzzleResolver {
 
     public static long resolveFirstPuzzle(Scanner scanner) {
-        List<Monkey> monkeys = new ArrayList<>();
-        for (int i = 0; i < 10; i++) {
-            monkeys.add(new Monkey());
-        }
-
-        int monkeyIndex = 0;
-        while (scanner.hasNextLine()) {
-            scanner.nextLine();
-            Monkey aMonkey = monkeys.get(monkeyIndex++);
-
-            initZenItems(aMonkey, scanner.nextLine());
-            initOperation(aMonkey, scanner.nextLine());
-            initDivisible(aMonkey, scanner.nextLine());
-            initTrueMonkey(monkeys, aMonkey, scanner.nextLine());
-            initFalseMonkey(monkeys, aMonkey, scanner.nextLine());
-            if (scanner.hasNextLine()) {
-                scanner.nextLine(); // read the empty line separating monkeys
-            }
-        }
-
-        KeepAwayGame keepAwayGame = new KeepAwayGame(monkeys.toArray(new Monkey[monkeys.size()]));
+        KeepAwayGame keepAwayGame = buildKeepAwayGame(
+                scanner,
+                new RelaxOwner(),
+                20
+        );
         keepAwayGame.play();
 
+        return getMonkeyBusiness(keepAwayGame);
+    }
+
+    public static long resolveSecondPuzzle(Scanner scanner) {
+        KeepAwayGame keepAwayGame = buildKeepAwayGame(
+                scanner,
+                new WorriedOwner(),
+                10000
+        );
+        keepAwayGame.play();
+
+        return getMonkeyBusiness(keepAwayGame);
+    }
+
+    private static Long getMonkeyBusiness(KeepAwayGame keepAwayGame) {
         return keepAwayGame.getMonkeys().stream()
                 .map(monkey -> monkey.getNbInspectedItems())
                 .sorted(Comparator.reverseOrder())
@@ -41,7 +40,7 @@ public class PuzzleResolver {
                 .get();
     }
 
-    public static long resolveSecondPuzzle(Scanner scanner) {
+    private static KeepAwayGame buildKeepAwayGame(Scanner scanner, Owner owner, int roundNumber) {
         List<Monkey> monkeys = new ArrayList<>();
         for (int i = 0; i < 10; i++) {
             monkeys.add(new Monkey());
@@ -52,8 +51,8 @@ public class PuzzleResolver {
             scanner.nextLine();
             Monkey aMonkey = monkeys.get(monkeyIndex++);
 
-            initPanicItems(aMonkey, scanner.nextLine());
-            initOperation(aMonkey, scanner.nextLine());
+            initItems(aMonkey, scanner.nextLine(), owner);
+            initInspection(aMonkey, scanner.nextLine());
             initDivisible(aMonkey, scanner.nextLine());
             initTrueMonkey(monkeys, aMonkey, scanner.nextLine());
             initFalseMonkey(monkeys, aMonkey, scanner.nextLine());
@@ -62,15 +61,7 @@ public class PuzzleResolver {
             }
         }
 
-        KeepAwayGame keepAwayGame = new KeepAwayGame(10000, monkeys.toArray(new Monkey[monkeys.size()]));
-        keepAwayGame.play();
-
-        return keepAwayGame.getMonkeys().stream()
-                .map(monkey -> monkey.getNbInspectedItems())
-                .sorted(Comparator.reverseOrder())
-                .limit(2)
-                .reduce((i, i2) -> i * i2)
-                .get();
+        return new KeepAwayGame(roundNumber, owner, monkeys.toArray(new Monkey[monkeys.size()]));
     }
 
     private static void initFalseMonkey(List<Monkey> monkeys, Monkey aMonkey, String nextLine) {
@@ -88,36 +79,26 @@ public class PuzzleResolver {
         aMonkey.setDivisible(new Divisible(Long.parseLong(condition)));
     }
 
-    private static void initOperation(Monkey aMonkey, String nextLine) {
-        String operation = nextLine.replace("  Operation: new = old ", "");
-        if (operation.startsWith("*")) {
-            aMonkey.setOperation(worryLevel -> {
-                String operand = operation.replace("* ", "");
+    private static void initInspection(Monkey aMonkey, String nextLine) {
+        String inspection = nextLine.replace("  Operation: new = old ", "");
+        if (inspection.startsWith("*")) {
+            aMonkey.setInspection(worryLevel -> {
+                String operand = inspection.replace("* ", "");
                 if (operand.equals("old")) {
                     return worryLevel * worryLevel;
                 } else {
                     return worryLevel * Long.parseLong(operand);
                 }
             });
-        } else if (operation.startsWith("+")) {
-            aMonkey.setOperation(worryLevel -> worryLevel + Long.parseLong(operation.replace("+ ", "")));
+        } else if (inspection.startsWith("+")) {
+            aMonkey.setInspection(worryLevel -> worryLevel + Long.parseLong(inspection.replace("+ ", "")));
         }
     }
 
-    private static void initPanicItems(Monkey aMonkey, String nextLine) {
+    private static void initItems(Monkey aMonkey, String nextLine, Owner owner) {
         String[] itemWorryLevel = nextLine.replace("  Starting items: ", "").split(", ");
         for (int i = 0; i < itemWorryLevel.length; i++) {
-            aMonkey.catchItem(new PanicItem(Long.parseLong(itemWorryLevel[i])));
-        }
-    }
-
-    private static void initZenItems(Monkey aMonkey, String nextLine) {
-        String[] itemWorryLevel = nextLine.replace("  Starting items: ", "").split(", ");
-        for (int i = 0; i < itemWorryLevel.length; i++) {
-            aMonkey.catchItem(new ZenItem(Long.parseLong(itemWorryLevel[i])));
+            aMonkey.catchItem(new Item(Long.parseLong(itemWorryLevel[i]), owner));
         }
     }
 }
-
-//     const wl = Math.floor(monkey.operation(monkey.items.shift()) / 3);
-//     const wl =            monkey.operation(monkey.items.shift()) % pod;
