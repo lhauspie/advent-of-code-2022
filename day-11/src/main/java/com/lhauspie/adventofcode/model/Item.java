@@ -1,15 +1,13 @@
 package com.lhauspie.adventofcode.model;
 
-public class Item {
+public abstract class Item {
     private long worryLevel;
 
     public Item(long worryLevel) {
         this.worryLevel = worryLevel;
     }
 
-    public void inspect() {
-        worryLevel = worryLevel / 3L;
-    }
+    abstract public void inspect();
 
     public void setWorryLevel(long worryLevel) {
         this.worryLevel = worryLevel;

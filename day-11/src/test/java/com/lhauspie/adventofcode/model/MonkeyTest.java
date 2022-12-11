@@ -10,9 +10,9 @@ public class MonkeyTest {
     public void monkeyThrowsToTheTrueMonkeyIfConditionIsTrue() {
         Monkey monkeyPlayer = new Monkey();
         Monkey monkeyReceiverForTrue = new Monkey();
-        monkeyPlayer.catchItem(new Item(69L));
+        monkeyPlayer.catchItem(new ZenItem(69L));
         monkeyPlayer.setOperation(worryLevel -> worryLevel * 19L);
-        monkeyPlayer.setCondition(worryLevel -> worryLevel % 23L == 0);
+        monkeyPlayer.setDivisible(new Divisible(23L));
         monkeyPlayer.setTrueMonkey(monkeyReceiverForTrue);
         monkeyPlayer.playTurn();
 
@@ -23,9 +23,9 @@ public class MonkeyTest {
     public void monkeyThrowsToTheFalseMonkeyIfConditionIsFalse() {
         Monkey monkeyPlayer = new Monkey();
         Monkey monkeyReceiverForFalse = new Monkey();
-        monkeyPlayer.catchItem(new Item(79L));
+        monkeyPlayer.catchItem(new ZenItem(79L));
         monkeyPlayer.setOperation(worryLevel -> worryLevel * 19L);
-        monkeyPlayer.setCondition(worryLevel -> worryLevel % 23L == 0);
+        monkeyPlayer.setDivisible(new Divisible(23L));
         monkeyPlayer.setFalseMonkey(monkeyReceiverForFalse);
         monkeyPlayer.playTurn();
 
@@ -38,10 +38,10 @@ public class MonkeyTest {
         Monkey monkeyReceiverForTrue = new Monkey();
         Monkey monkeyReceiverForFalse = new Monkey();
 
-        monkeyPlayer.catchItem(new Item(79L));
-        monkeyPlayer.catchItem(new Item(69L));
+        monkeyPlayer.catchItem(new ZenItem(79L));
+        monkeyPlayer.catchItem(new ZenItem(69L));
         monkeyPlayer.setOperation(worryLevel -> worryLevel * 19L);
-        monkeyPlayer.setCondition(worryLevel -> worryLevel % 23L == 0);
+        monkeyPlayer.setDivisible(new Divisible(23L));
         monkeyPlayer.setTrueMonkey(monkeyReceiverForTrue);
         monkeyPlayer.setFalseMonkey(monkeyReceiverForFalse);
         monkeyPlayer.playRound();

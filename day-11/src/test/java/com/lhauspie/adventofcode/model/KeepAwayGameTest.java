@@ -2,7 +2,6 @@ package com.lhauspie.adventofcode.model;
 
 import org.junit.jupiter.api.Test;
 
-import static org.junit.jupiter.api.Assertions.assertAll;
 import static org.junit.jupiter.api.Assertions.assertEquals;
 
 public class KeepAwayGameTest {
@@ -12,13 +11,11 @@ public class KeepAwayGameTest {
         KeepAwayGame keepAwayGame = buildKeepAwayGame();
         keepAwayGame.play();
         render(keepAwayGame);
-        assertAll(
-                () -> assertEquals(101L, keepAwayGame.getMonkeys().get(0).getNbInspectedItems()),
-                () -> assertEquals(95L, keepAwayGame.getMonkeys().get(1).getNbInspectedItems()),
-                () ->assertEquals(7L, keepAwayGame.getMonkeys().get(2).getNbInspectedItems()),
-                () -> assertEquals(105L, keepAwayGame.getMonkeys().get(3).getNbInspectedItems())
-        );
 
+        assertEquals(101L, keepAwayGame.getMonkeys().get(0).getNbInspectedItems());
+        assertEquals(95L, keepAwayGame.getMonkeys().get(1).getNbInspectedItems());
+        assertEquals(7L, keepAwayGame.getMonkeys().get(2).getNbInspectedItems());
+        assertEquals(105L, keepAwayGame.getMonkeys().get(3).getNbInspectedItems());
 
     }
 
@@ -45,10 +42,10 @@ public class KeepAwayGameTest {
 //            Test: divisible by 23
 //            If true: throw to monkey 2
 //            If false: throw to monkey 3
-        monkey0.catchItem(new Item(79L));
-        monkey0.catchItem(new Item(98L));
+        monkey0.catchItem(new ZenItem(79L));
+        monkey0.catchItem(new ZenItem(98L));
         monkey0.setOperation(worryLevel -> worryLevel * 19L);
-        monkey0.setCondition(worryLevel -> worryLevel % 23L == 0);
+        monkey0.setDivisible(new Divisible(23L));
         monkey0.setTrueMonkey(monkey2);
         monkey0.setFalseMonkey(monkey3);
 
@@ -58,12 +55,12 @@ public class KeepAwayGameTest {
 //            Test: divisible by 19
 //            If true: throw to monkey 2
 //            If false: throw to monkey 0
-        monkey1.catchItem(new Item(54L));
-        monkey1.catchItem(new Item(65L));
-        monkey1.catchItem(new Item(75L));
-        monkey1.catchItem(new Item(74L));
+        monkey1.catchItem(new ZenItem(54L));
+        monkey1.catchItem(new ZenItem(65L));
+        monkey1.catchItem(new ZenItem(75L));
+        monkey1.catchItem(new ZenItem(74L));
         monkey1.setOperation(worryLevel -> worryLevel + 6L);
-        monkey1.setCondition(worryLevel -> worryLevel % 19L == 0L);
+        monkey1.setDivisible(new Divisible(19L));
         monkey1.setTrueMonkey(monkey2);
         monkey1.setFalseMonkey(monkey0);
 
@@ -73,11 +70,11 @@ public class KeepAwayGameTest {
 //            Test: divisible by 13
 //            If true: throw to monkey 1
 //            If false: throw to monkey 3
-        monkey2.catchItem(new Item(79L));
-        monkey2.catchItem(new Item(60L));
-        monkey2.catchItem(new Item(97L));
+        monkey2.catchItem(new ZenItem(79L));
+        monkey2.catchItem(new ZenItem(60L));
+        monkey2.catchItem(new ZenItem(97L));
         monkey2.setOperation(worryLevel -> worryLevel * worryLevel);
-        monkey2.setCondition(worryLevel -> worryLevel % 13L == 0);
+        monkey2.setDivisible(new Divisible(13L));
         monkey2.setTrueMonkey(monkey1);
         monkey2.setFalseMonkey(monkey3);
 
@@ -87,9 +84,9 @@ public class KeepAwayGameTest {
 //            Test: divisible by 17
 //            If true: throw to monkey 0
 //            If false: throw to monkey 1
-        monkey3.catchItem(new Item(74L));
+        monkey3.catchItem(new ZenItem(74L));
         monkey3.setOperation(worryLevel -> worryLevel + 3L);
-        monkey3.setCondition(worryLevel -> worryLevel % 17L == 0);
+        monkey3.setDivisible(new Divisible(17L));
         monkey3.setTrueMonkey(monkey0);
         monkey3.setFalseMonkey(monkey1);
 

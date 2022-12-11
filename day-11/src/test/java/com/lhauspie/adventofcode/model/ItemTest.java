@@ -8,28 +8,28 @@ public class ItemTest {
 
     @Test
     public void worryLevelOfThirtyIsThreeTimesLessAfterInspection() {
-        var item = new Item(30L);
+        var item = new ZenItem(30L);
         item.inspect();
         assertEquals(10L, item.getWorryLevel());
     }
 
     @Test
     public void worryLevelOfThirtyOneIsThreeTimesLessAfterInspection() {
-        var item = new Item(31L);
+        var item = new ZenItem(31L);
         item.inspect();
         assertEquals(10L, item.getWorryLevel());
     }
 
     @Test
     public void worryLevelOfThirtyTwoIsThreeTimesLessAfterInspection() {
-        var item = new Item(32L);
+        var item = new ZenItem(32L);
         item.inspect();
         assertEquals(10L, item.getWorryLevel());
     }
 
     @Test
     public void worryLevelOfThirtyThreeIsThreeTimesLessAfterInspection() {
-        var item = new Item(33L);
+        var item = new ZenItem(33L);
         item.inspect();
         assertEquals(11L, item.getWorryLevel());
     }

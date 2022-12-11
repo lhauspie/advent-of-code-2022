@@ -6,7 +6,7 @@ import java.util.Deque;
 public class Monkey {
     private Deque<Item> items = new ArrayDeque<>();
     private Operation operation;
-    private Condition condition;
+    private Divisible divisible;
     private Monkey monkeyReceiverForTrue;
     private Monkey monkeyReceiverForFalse;
     private long nbInspectedItems = 0L;
@@ -19,8 +19,12 @@ public class Monkey {
         this.operation = operation;
     }
 
-    public void setCondition(Condition condition) {
-        this.condition = condition;
+    public void setDivisible(Divisible divisible) {
+        this.divisible = divisible;
+    }
+
+    public Divisible getDivisible() {
+        return divisible;
     }
 
     public void setTrueMonkey(Monkey monkeyReceiverForTrue) {
@@ -53,7 +57,7 @@ public class Monkey {
     }
 
     private void throwItem(Item polledItem) {
-        if (condition.isTrue(polledItem.getWorryLevel())) {
+        if (divisible.isDivisible(polledItem.getWorryLevel())) {
             monkeyReceiverForTrue.catchItem(polledItem);
         } else {
             monkeyReceiverForFalse.catchItem(polledItem);
