@@ -69,8 +69,8 @@ And it works perfectly.
 
 It's been several times that I designed matrix and other marking technics by using a `Position` or `Coordinate` object. This helped to have an extensible design almost all the time.
 As I don't really deal with matrix and sizes and indexes and so on of this last one, I can instantiate very easily dynamic matrix without caring about the good width and the good height.
-Is it a width, is it an height, does `y` mean `up` and `down` or `left` and `right`. A lot of question I don't have to ask my-welf during the development phase.
-In the same way, it allows me to have a good abstraction layer to avoid asking me `y++` is it going to `up` or `down` side ? I just have to write `position.up()` and it's so easy to read for my future me.
+Is it a width, is it a height, does `y` mean `up`/`down` or `left`/`right`. A lot of question I don't have to ask my-welf during the development phase.
+In the same way, it allows me to have a good abstraction layer to avoid asking me `y++` is it going to `up` or `down` side? I just have to write `position.up()` and it's so easy to read for my future me.
 
 And as this kind of object can equals to another, it even pretty easy to retrieve something from a `Map<Position, Object>`.
 
