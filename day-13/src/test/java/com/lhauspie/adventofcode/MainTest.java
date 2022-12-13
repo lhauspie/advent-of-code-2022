@@ -3,16 +3,17 @@ package com.lhauspie.adventofcode;
 import org.junit.jupiter.api.Test;
 
 import static org.junit.jupiter.api.Assertions.assertEquals;
+import static org.junit.jupiter.api.Assertions.assertTrue;
 
 public class MainTest {
 
     @Test
     public void resolveFirstPuzzle() {
-        assertEquals(0L, Main.resolveFirstPuzzle());
+        assertEquals(5390, Main.resolveFirstPuzzle());
     }
 
     @Test
     public void resolveSecondPuzzle() {
-        assertEquals(0L, Main.resolveSecondPuzzle());
+        assertEquals(19261, Main.resolveSecondPuzzle());
     }
 }

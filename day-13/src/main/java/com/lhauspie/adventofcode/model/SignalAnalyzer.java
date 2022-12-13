@@ -2,36 +2,65 @@ package com.lhauspie.adventofcode.model;
 
 public class SignalAnalyzer {
 
+    private static final int LEFT_SMALLER_THAN_RIGHT = -1;
+    private static final int LEFT_EQUALS_RIGHT = 0;
+    private static final int LEFT_HIGHER_THAN_RIGHT = 1;
+
+
     public static boolean pairIsInTheRightOrder(String left, String right) {
+        return compareSignals(left, right) != LEFT_HIGHER_THAN_RIGHT;
+    }
+
+    public static int compareSignals(String left, String right) {
         Element leftElement = getNextElement(left);
         Element rightElement = getNextElement(right);
 
-        if (leftElement == null) {
-            return true;
+        if (leftElement == null && rightElement == null) {
+            return LEFT_EQUALS_RIGHT;
+        } else if (leftElement == null) {
+//            System.out.println("- Left side ran out of items, so inputs are in the right order");
+            return LEFT_SMALLER_THAN_RIGHT;
+        } else if (rightElement == null) {
+//            System.out.println("- Right side ran out of items, so inputs are *not* in the right order");
+            return LEFT_HIGHER_THAN_RIGHT;
         }
-        if (rightElement == null) {
-            return false;
+
+        if (leftElement.isList() && rightElement.isList()) {
+//            System.out.println("- Compare " + leftElement.getSignal() + " vs " + rightElement.getSignal());
+            int signalComparison = compareSignals(
+                    leftElement.getSignal().substring(1, leftElement.getSignal().length() - 1),
+                    rightElement.getSignal().substring(1, rightElement.getSignal().length() - 1));
+            if (signalComparison == LEFT_EQUALS_RIGHT) {
+                return compareSignals(getSignalTail(left, leftElement), getSignalTail(right, rightElement));
+            }
+            return signalComparison;
         }
 
         if (leftElement.isInteger() && rightElement.isInteger()) {
-            return leftElement.getValue() <= rightElement.getValue()
-                    && pairIsInTheRightOrder(getSignalTail(left, leftElement), getSignalTail(right, leftElement));
-        }
-        if (leftElement.isList() && rightElement.isInteger()) {
-            return pairIsInTheRightOrder(leftElement.getSignal(), "[" + rightElement.getValue() + "]");
-        }
-        if (leftElement.isInteger() && rightElement.isList()) {
-            return pairIsInTheRightOrder("[" + leftElement.getValue() + "]", rightElement.getSignal());
-        }
-        if (leftElement.isList() && rightElement.isList()) {
-            return pairIsInTheRightOrder(
-                    leftElement.getSignal().substring(1, leftElement.getSignal().length() - 1),
-                    rightElement.getSignal().substring(1, rightElement.getSignal().length() - 1)
-            );
+//            System.out.println("- Compare " + leftElement.getValue() + " vs " + rightElement.getValue());
+            if (leftElement.getValue() < rightElement.getValue()) {
+//                System.out.println("- Left side is smaller, so inputs are in the right order");
+                return LEFT_SMALLER_THAN_RIGHT;
+            } else if (leftElement.getValue() == rightElement.getValue()) {
+                return compareSignals(getSignalTail(left, leftElement), getSignalTail(right, rightElement));
+            } else if (leftElement.getValue() > rightElement.getValue()) {
+//                System.out.println("- Right side is smaller, so inputs are not in the right order");
+                return LEFT_HIGHER_THAN_RIGHT;
+            }
         }
 
-        return true;
+        if (leftElement.isList() && rightElement.isInteger()) {
+//            System.out.println("- Mixed types; convert right to [" + rightElement.getValue() + "] and retry comparison");
+            return compareSignals(leftElement.getSignal(), "[" + rightElement.getValue() + "]");
+        }
+        if (leftElement.isInteger() && rightElement.isList()) {
+//            System.out.println("- Mixed types; convert left to [" + leftElement.getValue() + "] and retry comparison");
+            return compareSignals("[" + leftElement.getValue() + "]", rightElement.getSignal());
+        }
+
+        return LEFT_EQUALS_RIGHT;
     }
+
 
     private static String getSignalTail(String signal, Element element) {
         String tail = signal.substring(element.getSignal().length());

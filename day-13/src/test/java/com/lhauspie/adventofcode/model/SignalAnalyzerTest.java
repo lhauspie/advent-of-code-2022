@@ -16,6 +16,22 @@ public class SignalAnalyzerTest {
     }
 
     @Test
+    public void test1_2() {
+        String left  = "[[],[1]]";
+        String right = "[[],[1]]";
+
+        assertTrue(SignalAnalyzer.pairIsInTheRightOrder(left, right));
+    }
+
+    @Test
+    public void test1_3() {
+        String left  = "[[],[2]]";
+        String right = "[[],[1]]";
+
+        assertFalse(SignalAnalyzer.pairIsInTheRightOrder(left, right));
+    }
+
+    @Test
     public void test2() {
         String left  = "[1]";
         String right = "[]";
@@ -176,7 +192,7 @@ public class SignalAnalyzerTest {
     }
 
     @Test
-    public void testPuzzleExample9() {
+    public void testPuzzleExample8() {
         String left  = "[1,[2,[3,[4,[5,6,7]]]],8,9]";
         String right = "[1,[2,[3,[4,[5,6,0]]]],8,9]";
 
@@ -184,7 +200,7 @@ public class SignalAnalyzerTest {
     }
 
     @Test
-    public void testPuzzleExample10() {
+    public void testPuzzleExample9() {
         String left  = "[1,[2,[3,[4,[5,6,7]]]],8,9]";
         String right = "[1,[2,[3,[4,[5,6,7]]]],8,9,0]";
 
@@ -192,9 +208,33 @@ public class SignalAnalyzerTest {
     }
 
     @Test
-    public void testPuzzleExample11() {
+    public void testPuzzleExample10() {
         String left  = "[1,[2,[3,[4,[5,6,7]]]],8,9]";
         String right = "[1,[2,[3,[4,[5,6,8]]]],8,9,0]";
+
+        assertTrue(SignalAnalyzer.pairIsInTheRightOrder(left, right));
+    }
+
+    @Test
+    public void testPuzzleInputPair1() {
+        String left  = "[[7,6,3,6,10],[[[5,3,6,7,7]],2,1,2,6]]";
+        String right = "[[],[8,[8,6,5],[[5,1,8]],7],[]]";
+
+        assertFalse(SignalAnalyzer.pairIsInTheRightOrder(left, right));
+    }
+
+    @Test
+    public void testPuzzleInputPair2() {
+        String left  = "[[10,[],[9,8,6,[2,7,0,8]],[],[[4,6,2,1,4],6,5]]]";
+        String right = "[[4,5,1,[[0,0],[6,10],4,5],10],[[2,4,6,1,[6,8]],[[2,0,10]],[[5,10],[6,4,5,6],[8,9,2]]],[[[],10,0,7,7],[[9,9,7,3,8]]],[[[7],3,8],[6,3],1,5]]";
+
+        assertFalse(SignalAnalyzer.pairIsInTheRightOrder(left, right));
+    }
+
+    @Test
+    public void testPuzzleInputPair3() {
+        String left  = "[[0,[[9,6,4,5]],[]]]";
+        String right = "[[10,9,[[5,7],4,[5,8,0,9,8],[0,10],[3,1]],4]]";
 
         assertTrue(SignalAnalyzer.pairIsInTheRightOrder(left, right));
     }
