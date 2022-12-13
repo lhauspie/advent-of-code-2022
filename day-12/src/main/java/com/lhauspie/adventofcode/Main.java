@@ -6,10 +6,17 @@ import java.util.Scanner;
 public class Main {
 
     public static void main(String[] args) {
-        InputStream firstPuzzleInput = ClassLoader.getSystemClassLoader().getResourceAsStream("input.txt");
-        System.out.println("First puzzle result : " + PuzzleResolver.resolveFirstPuzzle(new Scanner(firstPuzzleInput)));
+        System.out.println("First puzzle result : " + resolveFirstPuzzle());
+        System.out.println("Second puzzle result : " + resolveSecondPuzzle());
+    }
 
+    public static Long resolveFirstPuzzle() {
+        InputStream firstPuzzleInput = ClassLoader.getSystemClassLoader().getResourceAsStream("input.txt");
+        return PuzzleResolver.resolveFirstPuzzle(new Scanner(firstPuzzleInput));
+    }
+
+    public static Long resolveSecondPuzzle() {
         InputStream secondPuzzleInput = ClassLoader.getSystemClassLoader().getResourceAsStream("input.txt");
-        System.out.println("Second puzzle result : " + PuzzleResolver.resolveSecondPuzzle(new Scanner(secondPuzzleInput)));
+        return PuzzleResolver.resolveSecondPuzzle(new Scanner(secondPuzzleInput));
     }
 }
