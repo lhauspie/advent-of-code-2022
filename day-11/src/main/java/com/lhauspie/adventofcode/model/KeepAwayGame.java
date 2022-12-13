@@ -33,10 +33,13 @@ public class KeepAwayGame {
             for (Monkey monkey : monkeys) {
                 monkey.playRound();
             }
-            // shorten worry level after all monkeys play their rounds to avoid Long overflowing
-            for(var item : centralPlayer.getItems()) {
-                item.setWorryLevel(item.getWorryLevel() % productOfDivisors);
-            }
+            shortenWorryLevelOfAllItemsToAvoidLongOverflowing();
+        }
+    }
+
+    private void shortenWorryLevelOfAllItemsToAvoidLongOverflowing() {
+        for(var item : centralPlayer.getItems()) {
+            item.setWorryLevel(item.getWorryLevel() % productOfDivisors);
         }
     }
 
