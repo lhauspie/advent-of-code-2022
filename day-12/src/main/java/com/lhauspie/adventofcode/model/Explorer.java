@@ -24,43 +24,65 @@ public class Explorer {
     }
 
     private Integer findTheShortestPathTo(Position destination) {
-        while (!destinationReached(destination)) {
+        while (!positionAlreadyExplored(destination)) {
             exploreNeighboursOfAlreadyExploredPositions();
         }
-        return explorationMap.get(destination);
-    }
-
-    private boolean destinationReached(Position destination) {
-        return explorationMap.containsKey(destination);
+        return getNumberOfStepsBeforeReachingThePosition(destination);
     }
 
     private void exploreNeighboursOfAlreadyExploredPositions() {
-        // for each already explored Position, we'll calculate the Neighbours' number of steps
-        for (var currentPosition : new HashSet<>(explorationMap.keySet())) {
-            var nextExplorationStep = explorationMap.get(currentPosition) + 1;
-            markNextPositionAsExploredIfPossible(currentPosition.up(), nextExplorationStep, currentPosition);
-            markNextPositionAsExploredIfPossible(currentPosition.down(), nextExplorationStep, currentPosition);
-            markNextPositionAsExploredIfPossible(currentPosition.left(), nextExplorationStep, currentPosition);
-            markNextPositionAsExploredIfPossible(currentPosition.right(), nextExplorationStep, currentPosition);
+        getAlreadyExploredPositions().forEach(currentPosition ->
+                markNeighboursPositionsAsExploredIfReachableFrom(currentPosition)
+        );
+    }
+
+    private void markNeighboursPositionsAsExploredIfReachableFrom(Position currentPosition) {
+        markNextPositionAsExploredIfReachableFromCurrentPosition(currentPosition.up(), currentPosition);
+        markNextPositionAsExploredIfReachableFromCurrentPosition(currentPosition.down(), currentPosition);
+        markNextPositionAsExploredIfReachableFromCurrentPosition(currentPosition.left(), currentPosition);
+        markNextPositionAsExploredIfReachableFromCurrentPosition(currentPosition.right(), currentPosition);
+    }
+
+    private Integer getNumberOfStepsBeforeReachingThePosition(Position currentPosition) {
+        return explorationMap.get(currentPosition);
+    }
+
+    private HashSet<Position> getAlreadyExploredPositions() {
+        return new HashSet<>(explorationMap.keySet());
+    }
+
+    private void markNextPositionAsExploredIfReachableFromCurrentPosition(Position nextPosition, Position currentPosition) {
+        if (positionReachableFromCurrentPosition(nextPosition, currentPosition)) {
+            markPositionAsExplored(nextPosition, getNumberOfStepsBeforeReachingThePosition(currentPosition) + 1);
         }
     }
 
-    private void markNextPositionAsExploredIfPossible(Position nextPosition, int nextExplorationStep, Position currentPosition) {
-        if (heightmap.containsKey(nextPosition)                                           // nextPosition is not outside the map
-                && heightmap.get(nextPosition) <= heightmap.get(currentPosition) + 1      // nextPosition is not too high
-                && !explorationMap.containsKey(nextPosition)) {                           // nextPosition is never explored
-            markPositionAsExplored(nextPosition, nextExplorationStep);
-        }
+    private boolean positionReachableFromCurrentPosition(Position positionToReach, Position startPosition) {
+        return positionIsOnTheMap(positionToReach)
+                && !positionAlreadyExplored(positionToReach)
+                && positionIsNotTooHighFromCurrentPosition(positionToReach, startPosition);
     }
 
-    private Integer markPositionAsExplored(Position from, int numberOfSteps) {
-        return explorationMap.put(from, numberOfSteps);
+    private boolean positionAlreadyExplored(Position nextPosition) {
+        return explorationMap.containsKey(nextPosition);
     }
 
-    private void markEveryZeroAltitudePositionsAsExplored(Integer numberOfSteps) {
+    private boolean positionIsOnTheMap(Position nextPosition) {
+        return heightmap.containsKey(nextPosition);
+    }
+
+    private boolean positionIsNotTooHighFromCurrentPosition(Position positionToReach, Position startPosition) {
+        return heightmap.get(positionToReach) <= heightmap.get(startPosition) + 1;
+    }
+
+    private Integer markPositionAsExplored(Position position, int numberOfStepsBeforeReachingThePosition) {
+        return explorationMap.put(position, numberOfStepsBeforeReachingThePosition);
+    }
+
+    private void markEveryZeroAltitudePositionsAsExplored(Integer numberOfStepsBeforeReachingThePosition) {
         for (var position : heightmap.keySet()) {
             if (heightmap.get(position) == ZERO_ALTITUDE) {
-                markPositionAsExplored(position, numberOfSteps);
+                markPositionAsExplored(position, numberOfStepsBeforeReachingThePosition);
             }
         }
     }
