@@ -86,6 +86,6 @@ public class PuzzleResolverTest {
                 abdefghi
                 """;
 
-        assertEquals(0L, PuzzleResolver.resolveSecondPuzzle(new Scanner(inputExample)));
+        assertEquals(29L, PuzzleResolver.resolveSecondPuzzle(new Scanner(inputExample)));
     }
 }
