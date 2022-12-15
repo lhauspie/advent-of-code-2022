@@ -15,10 +15,6 @@ public class Position {
         return new Position(x, y);
     }
 
-    public Position up() {
-        return Position.of(x, y - 1);
-    }
-
     public Position down() {
         return Position.of(x, y + 1);
     }

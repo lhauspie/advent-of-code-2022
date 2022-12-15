@@ -12,64 +12,54 @@ import java.util.Set;
 public class PuzzleResolver {
 
     public static int resolveFirstPuzzle(Scanner scanner) {
-        SandSource sandSource = new SandSource(Position.of(500, 0));
-        Cave cave = new Cave(sandSource);
-
-        while (scanner.hasNextLine()) {
-            parseInput(scanner.nextLine()).stream().forEach(position -> cave.addRock(position));
-        }
-
-        while (fallDown(sandSource.newSandUnit(), cave)) {
+        Cave cave = parseCave(scanner);
+        while (fallDownAndContinueIfSandUnitIsFallingIntoAbyssOrIsBlockingTheSandSource(cave.getSandSource().produceSandUnit(), cave)) {
             // nothing to do, just let falling down the sand
         };
-
-        cave.render(sandSource.newSandUnit());
         return cave.getNumberOfRestingSandUnits();
     }
 
     public static int resolveSecondPuzzle(Scanner scanner) {
+        Cave cave = parseCave(scanner);
+        addFloorToCave(cave);
+        while (fallDownAndContinueIfSandUnitIsFallingIntoAbyssOrIsBlockingTheSandSource(cave.getSandSource().produceSandUnit(), cave)) {
+            // nothing to do, just let falling down the sand
+        };
+        return cave.getNumberOfRestingSandUnits();
+    }
+
+    private static Cave parseCave(Scanner scanner) {
         SandSource sandSource = new SandSource(Position.of(500, 0));
         Cave cave = new Cave(sandSource);
 
         while (scanner.hasNextLine()) {
             parseInput(scanner.nextLine()).stream().forEach(position -> cave.addRock(position));
         }
-
-        int lastLineMaxY = cave.getMaxPosition().getY() + 1;
-        // bottom line
-        parseInput(
-                cave.getMinX() + "," + lastLineMaxY + " -> " + cave.getMaxX() + "," + lastLineMaxY
-        ).stream().forEach(position -> cave.addRock(position));
-
-        while (fallDown(sandSource.newSandUnit(), cave)) {
-            // nothing to do, just let falling down the sand
-        };
-
-        cave.render(sandSource.newSandUnit());
-        return cave.getNumberOfRestingSandUnits();
+        return cave;
     }
 
+    private static void addFloorToCave(Cave cave) {
+        int lastLineMaxY = cave.getMaxPosition().getY() + 1;
+        String floor = cave.getMinXToAvoidSandUnitsFlowingIntoTheAbyss() + "," + lastLineMaxY + " -> " + cave.getMaxXToAvoidSandUnitsFlowingIntoTheAbyss() + "," + lastLineMaxY;
+        parseInput(floor).stream().forEach(position -> cave.addRock(position));
+    }
 
-    // return true if sandUnit succeeded to rest
-    // return false if sandUnit is falling outside the cave
-    private static boolean fallDown(SandUnit sandUnit, Cave cave) {
-        while (fallOneStepDown(sandUnit, cave)) {
+    private static boolean fallDownAndContinueIfSandUnitIsFallingIntoAbyssOrIsBlockingTheSandSource(SandUnit sandUnit, Cave cave) {
+        while (fallOneStepDownAndContinueIfSandUnitReallyFeltDown(sandUnit, cave)) {
             // Stop falling when reaching the outside of the cave
-            if (sandUnit.getPosition().getY() > cave.getMaxPosition().getY()) {
+            if (cave.isFallingIntoAbyss(sandUnit)) {
                 return false;
             }
         }
         cave.addRestingSandUnit(sandUnit);
-        // Stop falling when sandUnit is blocking the sand source
+        // Stop falling down when sandUnit is blocking the sand source
         if (cave.isBlockingTheSandSource(sandUnit)) {
             return false;
         }
         return true;
     }
 
-    // return true if sandUnit succeed to fall one step down
-    // return false if the sandUnit stay at its position
-    private static boolean fallOneStepDown(SandUnit sandUnit, Cave cave) {
+    private static boolean fallOneStepDownAndContinueIfSandUnitReallyFeltDown(SandUnit sandUnit, Cave cave) {
         Position down = sandUnit.getPosition().down();
         Position downLeft = down.left();
         Position downRight = down.right();

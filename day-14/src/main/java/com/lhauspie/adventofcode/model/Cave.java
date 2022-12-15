@@ -13,8 +13,8 @@ public class Cave {
 
     public Cave(SandSource sandSource) {
         this.sandSource = sandSource;
-        this.minPosition = sandSource.newSandUnit().getPosition();
-        this.maxPosition = sandSource.newSandUnit().getPosition();
+        this.minPosition = sandSource.produceSandUnit().getPosition();
+        this.maxPosition = sandSource.produceSandUnit().getPosition();
     }
 
     public void addRestingSandUnit(SandUnit restingSandUnit) {
@@ -89,14 +89,22 @@ public class Cave {
     }
 
     public boolean isBlockingTheSandSource(SandUnit sandUnit) {
-        return sandSource.getPosition().equals(sandUnit.getPosition());
+        return sandSource.isBlockedBy(sandUnit);
     }
 
-    public int getMinX() {
+    public int getMinXToAvoidSandUnitsFlowingIntoTheAbyss() {
         return sandSource.getPosition().getX() - (getMaxPosition().getY() - getMinPosition().getY()) - 1;
     }
 
-    public int getMaxX() {
+    public int getMaxXToAvoidSandUnitsFlowingIntoTheAbyss() {
         return sandSource.getPosition().getX() + (getMaxPosition().getY() - getMinPosition().getY()) + 1;
+    }
+
+    public SandSource getSandSource() {
+        return sandSource;
+    }
+
+    public boolean isFallingIntoAbyss(SandUnit sandUnit) {
+        return sandUnit.getPosition().getY() > getMaxPosition().getY();
     }
 }

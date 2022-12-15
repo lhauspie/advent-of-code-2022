@@ -7,11 +7,15 @@ public class SandSource {
         this.position = position;
     }
 
-    public SandUnit newSandUnit() {
+    public SandUnit produceSandUnit() {
         return new SandUnit(position);
     }
 
     public Position getPosition() {
         return position;
+    }
+
+    public boolean isBlockedBy(SandUnit sandUnit) {
+        return position.equals(sandUnit.getPosition());
     }
 }
