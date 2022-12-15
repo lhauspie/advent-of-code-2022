@@ -13,8 +13,8 @@ public class Cave {
 
     public Cave(SandSource sandSource) {
         this.sandSource = sandSource;
-        this.minPosition = sandSource.produceSandUnit().getPosition();
-        this.maxPosition = sandSource.produceSandUnit().getPosition();
+        this.minPosition = sandSource.getPosition();
+        this.maxPosition = sandSource.getPosition();
     }
 
     public void addRestingSandUnit(SandUnit restingSandUnit) {
@@ -31,10 +31,10 @@ public class Cave {
         int minX = minPosition.getX();
         int minY = minPosition.getY();
         if (rock.getX() <= minPosition.getX()) {
-            minX = rock.getX() - 1;
+            minX = rock.getX();
         }
         if (rock.getY() <= minPosition.getY()) {
-            minY = rock.getY() - 1;
+            minY = rock.getY();
         }
         minPosition = Position.of(minX, minY);
     }
@@ -43,10 +43,10 @@ public class Cave {
         int maxX = maxPosition.getX();
         int maxY = maxPosition.getY();
         if (rock.getX() >= maxPosition.getX()) {
-            maxX = rock.getX() + 1;
+            maxX = rock.getX();
         }
         if (rock.getY() >= maxPosition.getY()) {
-            maxY = rock.getY() + 1;
+            maxY = rock.getY();
         }
         maxPosition = Position.of(maxX, maxY);
     }
@@ -72,7 +72,7 @@ public class Cave {
                 } else if (isFree(position)) {
                     System.out.print('.');
                 } else if (rocks.contains(position)) {
-                    System.out.print('#');
+                    System.out.print('▓');
                 }
             }
             System.out.println();
@@ -88,23 +88,30 @@ public class Cave {
         return restingSandUnits.size();
     }
 
-    public boolean isBlockingTheSandSource(SandUnit sandUnit) {
+    public boolean sandSourceIsBlockedBy(SandUnit sandUnit) {
         return sandSource.isBlockedBy(sandUnit);
     }
 
-    public int getMinXToAvoidSandUnitsFlowingIntoTheAbyss() {
-        return sandSource.getPosition().getX() - (getMaxPosition().getY() - getMinPosition().getY()) - 1;
+    private int getMinXToAvoidSandUnitsFlowingIntoTheAbyss() {
+        return sandSource.getPosition().getX() - (getMaxPosition().getY() - getMinPosition().getY()) - 2;
     }
 
-    public int getMaxXToAvoidSandUnitsFlowingIntoTheAbyss() {
-        return sandSource.getPosition().getX() + (getMaxPosition().getY() - getMinPosition().getY()) + 1;
+    private int getMaxXToAvoidSandUnitsFlowingIntoTheAbyss() {
+        return sandSource.getPosition().getX() + (getMaxPosition().getY() - getMinPosition().getY()) + 2;
     }
 
     public SandSource getSandSource() {
         return sandSource;
     }
 
-    public boolean isFallingIntoAbyss(SandUnit sandUnit) {
+    public boolean sandUnitIsFallingIntoAbyss(SandUnit sandUnit) {
         return sandUnit.getPosition().getY() > getMaxPosition().getY();
+    }
+
+    public void addFloor() {
+        int lastLineMaxY = getMaxPosition().getY() + 2;
+        for (int x = getMinXToAvoidSandUnitsFlowingIntoTheAbyss(); x <= getMaxXToAvoidSandUnitsFlowingIntoTheAbyss(); x++) {
+            addRock(new Position(x, lastLineMaxY));
+        }
     }
 }
