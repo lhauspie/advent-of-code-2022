@@ -25,7 +25,7 @@ public class PuzzleResolverTest {
                 Sensor at x=14, y=3: closest beacon is at x=15, y=3
                 Sensor at x=20, y=1: closest beacon is at x=15, y=3
                 """;
-        Assertions.assertEquals(26, PuzzleResolver.resolveFirstPuzzle(new Scanner(input)));
+        Assertions.assertEquals(26, PuzzleResolver.resolveFirstPuzzle(new Scanner(input), 10));
     }
 
     @Test

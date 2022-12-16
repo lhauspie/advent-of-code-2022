@@ -16,4 +16,8 @@ public class Sensor {
     public Position getBeaconPosition() {
         return beaconPosition;
     }
+
+    public int getManhattanDistanceToBeacon() {
+        return this.getPosition().getManhattanDistanceTo(getBeaconPosition());
+    }
 }

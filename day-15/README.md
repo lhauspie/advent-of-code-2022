@@ -58,5 +58,22 @@ The list of positions are `(B.x-1, B.y)` --> `(B.x-7, B.y)`
 So by focusing the problem to solve and not the model, we can have a more performant solution. And once we have a solution, we improve it with clean code principles. Doing clean code from the beginning seems to lead to problems when adapting the model to the problem.
 
 
-Je risque d'avoir un problem avec les lignes ne contenant aucun beacon...
-Si on reprend l'exemple précédent, la ligne `y=2` devrait retourner 9. Mais dans l'algo que j'imagine, la ligne `y=2` ne serait jamais pointé car je me concentre sur le beacon d'un sensor. Hors ici, je ne marquerait même as les positions de la ligne `y=2`
+## Second part
+
+Whouaw... Finding the beacon position seems to be finding the only Position missing in a matrix of size 4000000 * 4000000 (= 16000000000000) too much to instantiate all the possible positions and then remove the one we find on each line.
+Having positions of one line took 3987 ms, so impossible to try this for lines from 0 to 4000000... it would take 185 days oO.
+
+I have to adopt a new approach.
+
+I succeeded to improve the perf of my algo
+
+## Practices
+
+Yesterday I heard Uncle Bob saying, you should have a Test structure different from the Production Code structure.
+I'll try to create classes different from MyClassTest and replace that with `MyClassInThisSituationTest` to be more specific at class level.
+It should be clearer for newcomers.
+Let's try.
+
+It represents the disadvantage to always run all tests after a modification.
+Test class dedicated to a production Class allows to run only this class when you work on it.
+So don't forget to run all tests after each modification.

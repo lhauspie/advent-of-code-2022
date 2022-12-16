@@ -56,4 +56,8 @@ public class Position {
     public int getX() {
         return x;
     }
+
+    public int getManhattanDistanceTo(Position position) {
+        return Math.abs(this.getX() - position.getX()) + Math.abs(this.getY() - position.getY());
+    }
 }

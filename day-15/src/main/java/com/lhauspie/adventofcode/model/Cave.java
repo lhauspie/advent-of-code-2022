@@ -6,66 +6,53 @@ import java.util.stream.Collectors;
 
 public class Cave {
     Set<Sensor> sensors = new HashSet<>();
-    Set<Position> exploredPositions = new HashSet<>();
+    Set<Position> positionsWithoutBeacon = new HashSet<>();
 
     public void addSensor(Sensor sensor) {
         this.sensors.add(sensor);
     }
 
-    public void explore() {
-        sensors.forEach(sensor -> {
-            exploredPositions.addAll(exploreAndGetExploredPositions(sensor));
-        });
-    }
-
-    private Set<Position> exploreAndGetExploredPositions(Sensor sensor) {
-        Set<Position> exploredPositionsForThisExploration = new HashSet<>();
-        if (!sensor.getPosition().equals(sensor.getBeaconPosition())) {
-            exploredPositionsForThisExploration.add(sensor.getPosition());
-        }
-        while (!beaconFound(sensor, exploredPositionsForThisExploration)) {
-            exploreInDiamond(exploredPositionsForThisExploration);
-        }
-        exploredPositionsForThisExploration.remove(sensor.getBeaconPosition());
-
-        return exploredPositionsForThisExploration;
-    }
-
-    private void exploreInDiamond(Set<Position> exploredPositionsForThisExploration) {
-        for (Position exploredPosition : exploredPositionsForThisExploration.stream().toList()) {
-            exploredPositionsForThisExploration.add(exploredPosition.down());
-            exploredPositionsForThisExploration.add(exploredPosition.left());
-            exploredPositionsForThisExploration.add(exploredPosition.right());
-            exploredPositionsForThisExploration.add(exploredPosition.up());
-        }
-    }
-
-    private boolean beaconFound(Sensor sensor, Set<Position> exploredPositionsForThisExploration) {
-        return exploredPositionsForThisExploration.contains(sensor.getBeaconPosition());
-    }
-
     public long getNumberOfPositionsWhereABeaconCannotBePresent(int y) {
-        return exploredPositions.stream().filter(position -> position.getY() == y).count();
+        Set<Sensor> enoughNearSensors = giveSensorsForWhichYIsInManhattanDistance(y);
+        enoughNearSensors.stream().forEach(sensor -> positionsWithoutBeacon.addAll(getPositionsWhereABeaconCannotBePresentForOneSensor(y, sensor)));
+        return positionsWithoutBeacon.size();
     }
 
-    public void render() {
-        Set<Position> sensorsPositions = sensors.stream().map(Sensor::getPosition).collect(Collectors.toSet());
-        Set<Position> beaconsPositions = sensors.stream().map(Sensor::getBeaconPosition).collect(Collectors.toSet());
-        for (int y = -100; y <= 100; y++) {
-            for (int x = -100; x <= 100; x++) {
-                Position position = Position.of(x, y);
-                if (sensorsPositions.contains(position)) {
-                    System.out.print('S');
-                } else if (beaconsPositions.contains(position)) {
-                    System.out.print('B');
-                } else if (exploredPositions.contains(position)) {
-                    System.out.print('#');
-                } else {
-                    System.out.print('.');
-                }
-            }
-            System.out.println();
+    private Set<Position> getPositionsWhereABeaconCannotBePresentForOneSensor(int y, Sensor sensor) {
+        Set<Position> exploredPositions = new HashSet<>();
+
+        int manhattanDistance = sensor.getManhattanDistanceToBeacon();
+        int yDistance = getYDistanceExcludingBothPoints(sensor, y);
+        if (manhattanDistance < yDistance) {
+            return exploredPositions;
         }
-        System.out.println("================================");
+
+        int width = manhattanDistance - yDistance;
+
+        for (int x = sensor.getPosition().getX() - width; x <= sensor.getPosition().getX() + width; x++) {
+            exploredPositions.add(Position.of(x, y));
+        }
+
+        exploredPositions.remove(sensor.getBeaconPosition());
+        return exploredPositions;
+    }
+
+    private int getNumberOfPositionsWhereABeaconCannotBePresentForOneSensor(int y, Sensor sensor) {
+        int manhattanDistance = sensor.getManhattanDistanceToBeacon();
+        int yDistance = getYDistanceExcludingBothPoints(sensor, y);
+        if (manhattanDistance < yDistance) {
+            return 0;
+        }
+        return (manhattanDistance - yDistance) * 2 + (sensor.getBeaconPosition().getY() == y ? 0 : 1);
+    }
+
+    public Set<Sensor> giveSensorsForWhichYIsInManhattanDistance(int y) {
+        return sensors.stream()
+                .filter(sensor -> sensor.getManhattanDistanceToBeacon() >= getYDistanceExcludingBothPoints(sensor, y))
+                .collect(Collectors.toSet());
+    }
+
+    private int getYDistanceExcludingBothPoints(Sensor sensor, int y) {
+        return Math.abs(sensor.getPosition().getY() - y);
     }
 }
