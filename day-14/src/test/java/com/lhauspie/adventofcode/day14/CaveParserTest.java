@@ -1,6 +1,6 @@
-package com.lhauspie.adventofcode;
+package com.lhauspie.adventofcode.day14;
 
-import com.lhauspie.adventofcode.model.Position;
+import com.lhauspie.adventofcode.day14.model.Position;
 import org.junit.jupiter.api.Test;
 
 import java.util.Set;

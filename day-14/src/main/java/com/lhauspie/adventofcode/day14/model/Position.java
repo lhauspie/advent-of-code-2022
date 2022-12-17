@@ -1,4 +1,4 @@
-package com.lhauspie.adventofcode.model;
+package com.lhauspie.adventofcode.day14.model;
 
 import java.util.Objects;
 

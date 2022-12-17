@@ -1,4 +1,4 @@
-package com.lhauspie.adventofcode;
+package com.lhauspie.adventofcode.day14;
 
 import java.io.InputStream;
 import java.util.Scanner;

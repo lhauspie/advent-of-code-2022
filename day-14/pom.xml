@@ -35,7 +35,7 @@
                         <manifest>
                             <addClasspath>true</addClasspath>
                             <classpathPrefix>lib/</classpathPrefix>
-                            <mainClass>com.lhauspie.adventofcode.Main</mainClass>
+                            <mainClass>com.lhauspie.adventofcode.day14.Main</mainClass>
                         </manifest>
                     </archive>
                 </configuration>

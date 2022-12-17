@@ -1,8 +1,8 @@
-package com.lhauspie.adventofcode;
+package com.lhauspie.adventofcode.day14;
 
-import com.lhauspie.adventofcode.model.Cave;
-import com.lhauspie.adventofcode.model.Position;
-import com.lhauspie.adventofcode.model.SandSource;
+import com.lhauspie.adventofcode.day14.model.Cave;
+import com.lhauspie.adventofcode.day14.model.Position;
+import com.lhauspie.adventofcode.day14.model.SandSource;
 
 import java.util.HashSet;
 import java.util.Scanner;

@@ -1,4 +1,4 @@
-package com.lhauspie.adventofcode.model;
+package com.lhauspie.adventofcode.day14.model;
 
 import org.junit.jupiter.api.Test;
 

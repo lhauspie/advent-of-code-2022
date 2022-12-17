@@ -1,4 +1,4 @@
-package com.lhauspie.adventofcode;
+package com.lhauspie.adventofcode.day14;
 
 import org.junit.jupiter.api.Assertions;
 import org.junit.jupiter.api.Test;
