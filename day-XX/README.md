@@ -7,7 +7,7 @@ mvn clean package
 # How to run
 
 ```
-java -jar target/advent-of-code-2022-day-10-1.0.0-SNAPSHOT.jar
+java -jar target/advent-of-code-2022-day-XX-1.0.0-SNAPSHOT.jar
 ```
 
 # Some notes

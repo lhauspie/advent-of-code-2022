@@ -9,7 +9,7 @@
     </parent>
     <packaging>jar</packaging>
 
-    <artifactId>advent-of-code-2022-day-13</artifactId>
+    <artifactId>advent-of-code-2022-day-XX</artifactId>
 
     <properties>
         <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
@@ -35,7 +35,7 @@
                         <manifest>
                             <addClasspath>true</addClasspath>
                             <classpathPrefix>lib/</classpathPrefix>
-                            <mainClass>com.lhauspie.adventofcode.day13.Main</mainClass>
+                            <mainClass>com.lhauspie.adventofcode.dayxx.Main</mainClass>
                         </manifest>
                     </archive>
                 </configuration>
