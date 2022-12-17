@@ -60,12 +60,29 @@ So by focusing the problem to solve and not the model, we can have a more perfor
 
 ## Second part
 
-Whouaw... Finding the beacon position seems to be finding the only Position missing in a matrix of size 4000000 * 4000000 (= 16000000000000) too much to instantiate all the possible positions and then remove the one we find on each line.
+Whouaw... Finding the beacon position seems to be finding the only Position missing in a matrix of size 4000000 * 4000000 (= 16000000000000) what is too much to instantiate all the possible positions and then remove the one we find on each line.
 Having positions of one line took 3987 ms, so impossible to try this for lines from 0 to 4000000... it would take 185 days oO.
 
 I have to adopt a new approach.
 
-I succeeded to improve the perf of my algo
+I succeeded to improve the perf of my algo to arrive to 21045 ms by replacing `Set` of `Position` by `Set` of `Integer`.
+
+I have to adopt a new approach.
+
+Ok, I improved the performance to resolve the first part of the puzzle in 124 ms by replacing `Set` of `Integer` by a big fat array of boolean boolean[40000000] what is not flexible enough to resolve other inputs in case of reusing this solution.
+What I think is enough to resolve the second part.
+
+I tried to run this solution and it took 6 hours to have the bad answer oO.
+
+Ok, new algorithm and parallelization should give better performance.
+Parallelization makes my machine very hot and consumes the battery very quickly (40% in 30 minutes).
+I stop the program before the end...
+I think I don't have the competence to resolve this puzzle in less than a minute. I think I will cheat.
+
+Ok, I found the explanation of another method to find the solution : https://todd.ginsberg.com/post/advent-of-code/2022/day15/.
+
+I implemented it and the solution was displayed in less than 2 seconds. oO.
+
 
 ## Practices
 

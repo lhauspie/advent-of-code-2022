@@ -1,4 +1,4 @@
-package com.lhauspie.adventofcode.model;
+package com.lhauspie.adventofcode.day15.model;
 
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
@@ -31,49 +31,49 @@ public class CaveWithOneSensorTest {
     // 16 ..........#.........
     @BeforeEach
     public void init() {
-        cave = new Cave();
+        cave = new Cave(Position.of(0, 0), Position.of(20, 20));
         // Sensor at x=8, y=7: closest beacon is at x=2, y=10
         cave.addSensor(new Sensor(Position.of(8, 7), Position.of(2, 10)));
     }
 
 
     @Test
-    public void testWithOneSensorFour() {
+    public void testFour() {
         assertEquals(5, cave.getNumberOfPositionsWhereABeaconCannotBePresent(0));
     }
 
     @Test
-    public void testWithOneSensorFive() {
+    public void testFive() {
         assertEquals(12, cave.getNumberOfPositionsWhereABeaconCannotBePresent(10));
     }
 
     @Test
-    public void testWithOneSensorOne() {
+    public void testOne() {
         assertEquals(11, cave.getNumberOfPositionsWhereABeaconCannotBePresent(11));
     }
 
     @Test
-    public void testWithOneSensorTwo() {
+    public void testTwo() {
         assertEquals(9, cave.getNumberOfPositionsWhereABeaconCannotBePresent(12));
     }
 
     @Test
-    public void testWithOneSensorThree() {
+    public void testThree() {
         assertEquals(7, cave.getNumberOfPositionsWhereABeaconCannotBePresent(13));
     }
 
     @Test
-    public void testWithOneSensorSeven() {
+    public void testSeven() {
         assertEquals(1, cave.getNumberOfPositionsWhereABeaconCannotBePresent(16));
     }
 
     @Test
-    public void testWithOneSensorSixOne() {
+    public void testSixOne() {
         assertEquals(0, cave.getNumberOfPositionsWhereABeaconCannotBePresent(17));
     }
 
     @Test
-    public void testWithOneSensorSix() {
+    public void testSix() {
         assertEquals(0, cave.getNumberOfPositionsWhereABeaconCannotBePresent(20));
     }
 }

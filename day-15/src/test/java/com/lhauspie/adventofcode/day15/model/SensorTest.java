@@ -1,5 +1,7 @@
-package com.lhauspie.adventofcode.model;
+package com.lhauspie.adventofcode.day15.model;
 
+import com.lhauspie.adventofcode.day15.model.Position;
+import com.lhauspie.adventofcode.day15.model.Sensor;
 import org.junit.jupiter.api.Assertions;
 import org.junit.jupiter.api.Test;
 

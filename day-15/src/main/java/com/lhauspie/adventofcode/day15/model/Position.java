@@ -1,5 +1,6 @@
-package com.lhauspie.adventofcode.model;
+package com.lhauspie.adventofcode.day15.model;
 
+import java.awt.geom.Point2D;
 import java.util.Objects;
 
 public class Position {
@@ -59,5 +60,9 @@ public class Position {
 
     public int getManhattanDistanceTo(Position position) {
         return Math.abs(this.getX() - position.getX()) + Math.abs(this.getY() - position.getY());
+    }
+
+    public int getManhattanDistanceTo(int x, int y) {
+        return Math.abs(this.getX() - x) + Math.abs(this.getY() - y);
     }
 }

@@ -1,4 +1,4 @@
-package com.lhauspie.adventofcode;
+package com.lhauspie.adventofcode.day15;
 
 import java.io.InputStream;
 import java.util.Scanner;
@@ -15,8 +15,8 @@ public class Main {
         return PuzzleResolver.resolveFirstPuzzle(new Scanner(firstPuzzleInput), 2000000);
     }
 
-    public static int resolveSecondPuzzle() {
+    public static long resolveSecondPuzzle() {
         InputStream secondPuzzleInput = ClassLoader.getSystemClassLoader().getResourceAsStream("input.txt");
-        return PuzzleResolver.resolveSecondPuzzle(new Scanner(secondPuzzleInput));
+        return PuzzleResolver.resolveSecondPuzzle(new Scanner(secondPuzzleInput), 4000000, 4000000);
     }
 }

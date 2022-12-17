@@ -1,8 +1,7 @@
-package com.lhauspie.adventofcode;
+package com.lhauspie.adventofcode.day15;
 
+import com.lhauspie.adventofcode.day15.Main;
 import org.junit.jupiter.api.Test;
-
-import java.time.LocalDateTime;
 
 import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.junit.jupiter.api.Assertions.assertTrue;
@@ -18,6 +17,8 @@ public class MainTest {
 
     @Test
     public void resolveSecondPuzzle() {
-        assertEquals(0, Main.resolveSecondPuzzle());
+        long millis = System.currentTimeMillis();
+        assertEquals(12413999391794L, Main.resolveSecondPuzzle());
+        System.out.println("took " + (System.currentTimeMillis() - millis)+ " ms");
     }
 }

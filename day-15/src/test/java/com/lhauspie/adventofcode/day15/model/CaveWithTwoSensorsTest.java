@@ -1,6 +1,8 @@
-package com.lhauspie.adventofcode.model;
+package com.lhauspie.adventofcode.day15.model;
 
-import org.junit.jupiter.api.BeforeAll;
+import com.lhauspie.adventofcode.day15.model.Cave;
+import com.lhauspie.adventofcode.day15.model.Position;
+import com.lhauspie.adventofcode.day15.model.Sensor;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 
@@ -28,7 +30,7 @@ public class CaveWithTwoSensorsTest {
     // 16 .....#.................
     @BeforeEach
     public void init() {
-        cave = new Cave();
+        cave = new Cave(Position.of(0, 0), Position.of(20, 20));
         cave.addSensor(new Sensor(Position.of(11, 7), Position.of(17, 7)));
         cave.addSensor(new Sensor(Position.of(3, 11), Position.of(7, 10)));
     }
