@@ -31,6 +31,7 @@
         <module>day-13</module>
         <module>day-14</module>
         <module>day-15</module>
+        <module>day-16</module><!-- IT'S A FAILURE -->
     </modules>
 
     <dependencyManagement>
