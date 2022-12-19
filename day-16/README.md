@@ -15,7 +15,7 @@ java -jar target/advent-of-code-2022-day-16-1.0.0-SNAPSHOT.jar
 It seems the problem is about a graph.
 I'm very bad to resolve graph problem.
 
-I think day and night about this problem but the solution doesn't come... And it seems that I am not the only one ==> .
+I think day and night about this problem but the solution doesn't come... And it seems that I am not the only one ==> https://github.com/tginsberg/advent-2022-kotlin/tree/main/src/main/kotlin/com/ginsberg/advent2022.
 
 So I give up on this puzzle and I'll come back to it later so as not to lose the thread of the advent calendar.
 

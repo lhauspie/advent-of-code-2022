@@ -23,7 +23,7 @@ Over engineering is time expensive.
 
 ## Adding test during the refactor phase
 
-Sometimes, I refactored my code to split the problem in smaller piece.
+Sometimes, I refactored my code to split the problem in smaller pieces.
 During the refactor, I made some regressions, we're human after all. And as human, we make some mistakes.
 
 But the problem is that when we have tens of tests KO, it's pretty difficult to know where the issue comes from exactly...
