@@ -28,7 +28,7 @@ public class PuzzleResolver {
             sandUnit = cave.getSandSource().produceSandUnit();
             fallSandUnitDownUntilItCantContinueToMove(sandUnit, cave);
         } while (!simulationIsDone(sandUnit, cave));
-        cave.render(sandUnit);
+//        cave.render(sandUnit);
     }
 
 

@@ -12,7 +12,7 @@ java -jar target/advent-of-code-2022-day-12-1.0.0-SNAPSHOT.jar
 
 # Some notes
 
-For this puzzle it seems pretty clear we have to code a Map describing the Topology and a Person how want to go through this map to reach a specific Point from a StartPosition.
+For this puzzle it seems pretty clear we have to code a Map describing the Topography and a Person how want to go through this map to reach a specific Point from a StartPosition.
 
 The way to reach the specific Point seems specific to the Person and maybe to the used tools (Climbing Gear for instance).
 

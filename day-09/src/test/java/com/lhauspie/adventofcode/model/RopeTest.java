@@ -27,11 +27,6 @@ public class RopeTest {
         rope.getHead().moveUp(); // head.y = 5 / tail.y = 2
         rope.getHead().moveUp(); // head.y = 6 / tail.y = 3
 
-        System.out.println(node1.getPosition());
-        System.out.println(node2.getPosition());
-        System.out.println(node3.getPosition());
-        System.out.println(node4.getPosition());
-
         assertEquals(Position.of(0, 3), rope.getTail().getPosition());
     }
 }

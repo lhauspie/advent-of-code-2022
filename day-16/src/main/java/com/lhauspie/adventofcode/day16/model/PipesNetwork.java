@@ -27,7 +27,6 @@ public class PipesNetwork {
     }
 
     public static long internalGetMostPressure(Valve from, int timeLeft) {
-        System.out.println("Time Left = " + timeLeft);
         if (allValvesHasBeenOpened()) {
             return 0;
         }
