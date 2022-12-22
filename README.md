@@ -29,3 +29,15 @@ During the refactor, I made some regressions, we're human after all. And as huma
 But the problem is that when we have tens of tests KO, it's pretty difficult to know where the issue comes from exactly...
 
 So I started to add some tests during the refactor phase in `day-15` and it was much more easier to detect bugs as soon as possible.
+
+
+## Code quality and modeling
+
+Often, when I read code that I don't know (on open source projects for example), I am surprised by the readability and I often think that I wouldn't be able to deliver code of this quality.
+
+One thing I realized with this Advent of Code is that the first draft of a code is often rotten and it needs to be refactored to refine the model, functions, variable names, class names and so on.
+
+Another thing I realized is that the modeling of a problem remains personal.
+You can always argue with a developer's choices in modeling, so you have to learn to receive this kind of feedback as a developer and not be egotistical.
+
+A quality code is a long way to go, but it's rewarding once it's done.
