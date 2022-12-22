@@ -26,8 +26,48 @@ public class PuzzleResolverTest {
             """;
 
     @Test
-    public void tryToResolveFirstPuzzleAccordingToInputExample() {
+    public void testOne() {
+    String input = """
+            root: pppw + sjmn
+            sjmn: 4
+            pppw: 6
+            """;
+        Assertions.assertEquals(10, PuzzleResolver.resolveFirstPuzzle(new Scanner(input)));
+    }
+
+    @Test
+    public void testTwo() {
+    String input = """
+            root: pppw * sjmn
+            sjmn: 4
+            pppw: 6
+            """;
+        Assertions.assertEquals(24, PuzzleResolver.resolveFirstPuzzle(new Scanner(input)));
+    }
+
+    @Test
+    public void testThree() {
+    String input = """
+            root: pppw - sjmn
+            sjmn: 6
+            pppw: 4
+            """;
+        Assertions.assertEquals(-2, PuzzleResolver.resolveFirstPuzzle(new Scanner(input)));
+    }
+
+    @Test
+    public void testFour() {
+    String input = """
+            root: pppw / sjmn
+            sjmn: 6
+            pppw: 4
+            """;
         Assertions.assertEquals(0, PuzzleResolver.resolveFirstPuzzle(new Scanner(input)));
+    }
+
+    @Test
+    public void tryToResolveFirstPuzzleAccordingToInputExample() {
+        Assertions.assertEquals(152, PuzzleResolver.resolveFirstPuzzle(new Scanner(input)));
     }
 
     @Test
