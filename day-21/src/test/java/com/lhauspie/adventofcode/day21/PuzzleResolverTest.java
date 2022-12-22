@@ -72,6 +72,6 @@ public class PuzzleResolverTest {
 
     @Test
     public void tryToResolveSecondPuzzleAccordingToInputExample() {
-        Assertions.assertEquals(0, PuzzleResolver.resolveSecondPuzzle(new Scanner(input)));
+        Assertions.assertEquals(301, PuzzleResolver.resolveSecondPuzzle(new Scanner(input)));
     }
 }

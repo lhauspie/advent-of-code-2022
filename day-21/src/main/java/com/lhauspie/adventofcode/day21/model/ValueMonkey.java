@@ -1,10 +1,10 @@
 package com.lhauspie.adventofcode.day21.model;
 
 public class ValueMonkey implements Monkey {
-    private String id;
+    private MonkeyId id;
     private long value;
 
-    public ValueMonkey(String id, Long value) {
+    public ValueMonkey(MonkeyId id, Long value) {
         this.id = id;
         this.value = value;
     }
@@ -13,7 +13,7 @@ public class ValueMonkey implements Monkey {
         return value;
     }
 
-    public String getId() {
+    public MonkeyId getId() {
         return id;
     }
 }

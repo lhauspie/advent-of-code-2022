@@ -46,3 +46,10 @@ class Monkey {
 }
 ```
 
+## Part 2
+
+I had to think very hard to revert each operation.
+
+I'm not totally satisfied of my implementation and the code seems to be a bit not testable.
+
+Let's try to refactor the code to make it testable.
