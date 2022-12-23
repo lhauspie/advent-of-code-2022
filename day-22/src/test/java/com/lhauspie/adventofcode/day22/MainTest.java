@@ -13,6 +13,6 @@ public class MainTest {
 
     @Test
     public void resolveSecondPuzzle() {
-        assertEquals(0, Main.resolveSecondPuzzle());
+        assertEquals(95291, Main.resolveSecondPuzzle());
     }
 }

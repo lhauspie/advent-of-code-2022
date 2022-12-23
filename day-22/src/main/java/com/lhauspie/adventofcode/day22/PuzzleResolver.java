@@ -1,9 +1,6 @@
 package com.lhauspie.adventofcode.day22;
 
-import com.lhauspie.adventofcode.day22.model.Board;
-import com.lhauspie.adventofcode.day22.model.Explorer;
-import com.lhauspie.adventofcode.day22.model.Position;
-import com.lhauspie.adventofcode.day22.model.Tile;
+import com.lhauspie.adventofcode.day22.model.*;
 
 import java.util.Scanner;
 
@@ -11,7 +8,7 @@ public class PuzzleResolver {
 
     public static long resolveFirstPuzzle(Scanner scanner) {
         Board board = parseBoard(scanner);
-        Explorer explorer = new Explorer(board.getStartTile());
+        BoardExplorer explorer = new BoardExplorer(board);
 
         String movementInstructions = scanner.nextLine();
         executeMovementInstructions(explorer, movementInstructions);
@@ -44,8 +41,16 @@ public class PuzzleResolver {
         }
     }
 
-    public static long resolveSecondPuzzle(Scanner scanner) {
-        return 0;
+    public static long resolveSecondPuzzle(Scanner scanner, int cubeSize) {
+        Cube cube = parseCube(scanner, cubeSize);
+        Explorer explorer = new CubeExplorer(cube);
+
+        String movementInstructions = scanner.nextLine();
+        executeMovementInstructions(explorer, movementInstructions);
+
+        return 1000 * explorer.getCurrentTile().getPosition().getY()
+                + 4 * explorer.getCurrentTile().getPosition().getX()
+                + explorer.getFacing().getValue();
     }
 
     private static Board parseBoard(Scanner scanner) {
@@ -67,6 +72,28 @@ public class PuzzleResolver {
         }
 
         return board;
+    }
+
+    private static Cube parseCube(Scanner scanner, int cubeSize) {
+        var cube = new Cube(cubeSize);
+        var nextLine = scanner.nextLine();
+
+        int row = 1;
+        while (!nextLine.isEmpty()) {
+            int col = 1;
+            char[] nextCharSequence = nextLine.toCharArray();
+            for (int i = 0; i < nextCharSequence.length; i++) {
+                if (nextCharSequence[i] != ' ') {
+                    cube.addTile(new Tile(Position.of(col, row), nextCharSequence[i] == '.'));
+                }
+                col++;
+            }
+            nextLine = scanner.nextLine();
+            row++;
+        }
+
+        cube.consolidate();
+        return cube;
     }
 
 }

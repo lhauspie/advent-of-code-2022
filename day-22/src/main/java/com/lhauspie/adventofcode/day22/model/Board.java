@@ -4,8 +4,8 @@ import java.util.HashMap;
 import java.util.Map;
 
 public class Board {
-    private Map<Position, Tile> tiles = new HashMap<>();
-    private Tile startTile = null;
+    protected Map<Position, Tile> tiles = new HashMap<>();
+    protected Tile startTile = null;
 
     public void addTile(Tile tile) {
         if (startTile == null) {

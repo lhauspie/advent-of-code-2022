@@ -3,24 +3,24 @@ package com.lhauspie.adventofcode.day22.model;
 import org.junit.jupiter.api.Assertions;
 import org.junit.jupiter.api.Test;
 
-public class ExplorerTest {
+public class BoardExplorerTest {
 
     @Test
     public void newExplorerMustFaceToEast() {
-        Explorer explorer = new Explorer(new Tile(Position.of(1, 1), true));
+        BoardExplorer explorer = new BoardExplorer();
         Assertions.assertEquals(Facing.EAST, explorer.getFacing());
     }
 
     @Test
     public void explorerMustFaceToNorthAfterTurningCounterclockwise() {
-        Explorer explorer = new Explorer(new Tile(Position.of(1, 1), true));
+        BoardExplorer explorer = new BoardExplorer();
         explorer.turnCounterclockwise();
         Assertions.assertEquals(Facing.NORTH, explorer.getFacing());
     }
 
     @Test
     public void explorerMustFaceToWestAfterTurningCounterclockwiseTwice() {
-        Explorer explorer = new Explorer(new Tile(Position.of(1, 1), true));
+        BoardExplorer explorer = new BoardExplorer();
         explorer.turnCounterclockwise();
         explorer.turnCounterclockwise();
         Assertions.assertEquals(Facing.WEST, explorer.getFacing());
@@ -28,7 +28,7 @@ public class ExplorerTest {
 
     @Test
     public void explorerMustFaceToSouthAfterTurningCounterclockwiseThrice() {
-        Explorer explorer = new Explorer(new Tile(Position.of(1, 1), true));
+        BoardExplorer explorer = new BoardExplorer();
         explorer.turnCounterclockwise();
         explorer.turnCounterclockwise();
         explorer.turnCounterclockwise();
@@ -37,14 +37,14 @@ public class ExplorerTest {
 
     @Test
     public void explorerMustFaceToSouthAfterTurningClockwise() {
-        Explorer explorer = new Explorer(new Tile(Position.of(1, 1), true));
+        BoardExplorer explorer = new BoardExplorer();
         explorer.turnClockwise();
         Assertions.assertEquals(Facing.SOUTH, explorer.getFacing());
     }
 
     @Test
     public void explorerMustFaceToWestAfterTurningClockwiseTwice() {
-        Explorer explorer = new Explorer(new Tile(Position.of(1, 1), true));
+        BoardExplorer explorer = new BoardExplorer();
         explorer.turnClockwise();
         explorer.turnClockwise();
         Assertions.assertEquals(Facing.WEST, explorer.getFacing());
@@ -52,7 +52,7 @@ public class ExplorerTest {
 
     @Test
     public void explorerMustFaceToNorthAfterTurningCounterclockwiseThrice() {
-        Explorer explorer = new Explorer(new Tile(Position.of(1, 1), true));
+        BoardExplorer explorer = new BoardExplorer();
         explorer.turnClockwise();
         explorer.turnClockwise();
         explorer.turnClockwise();

@@ -11,45 +11,50 @@ java -jar target/advent-of-code-2022-day-22-1.0.0-SNAPSHOT.jar
 ```
 
 # Some notes
+This is a map route.
+The input map is 150x200.
+That is a maximum of 30000 positions.
+This is totally manageable from a memory point of view.
 
-Il s'agit d'un parcours de carte.
-La carte de l'input fait 150x150.
-Soit un maximum de 22500 positions.
-Ce qui est totalement gérable d'un point de vue mémoire.
+The rest of the input contains the move instructions.
+There are 4000 of them (including moves and rotations).
 
-Le reste de l'input contient les instructions de déplacement.
-Il y en a 4000 (incluant les mouvement et les rotations).
+The map is a torus.
+Like every time I'm in the presence of a torus, I like to model it with linked lists.
 
-La map est un tore.
-Comme à chaque fois que je suis en présence d'un tore, j'aime bien modeliser ça avec des liste chainée.
+Here, we could have positions linked to a given position.
+These positions are the cardinal points.
 
-Ici, on pourrait avoir des positions liées à une position donnée.
-Ce sont les points cardinaux.
+A rotation order could be used to compute the direction in which to move next.
+A `Position` can be an empty space or not.
 
-Un ordre de rotation pourrait permettre de calculer la direction dans laquelle avancer au prochain mouvement.
-Une Position peut-être un espace vide ou un mur.
+So we can move forward as many times as we want or until we meet a wall.
 
-Donc on peut avancer le nombre de fois demandée ou jusqu'à rencontrer un mur.
+The starting direction is `EAST`.
+The starting position is the top left position possible.
 
-La direction de départ est Est.
-La position de départ la position la plus en haut à gauche possible
-
-
-Apres une bonne quantité de code, j'ai finalement résolu le puzzle 1.
+After a lot of code, I finally solved the first part.
 
 
 ## Part 2
 
-En gros, au premier tour, j'ai modelisé une Board et un explorateur qui fait le travail de parcourir la Board.
+Basically, in the first round, I modeled a `Board` and an `Explorer` that does the work of walking the `Board`.
 
-Cette séparation me sauve un peu car j'ai normalement qu'à remplacer la Board par un Cub et tout devrais se dérouler comme prévu.
+This separation saves me a bit because I normally only have to replace the `Board` with a `Cube` and everything should work out as planned.
 
-Mon plus gros problème, c'est l'approche que j'ai utilisé pour ajouter les Tiles à la Board.
-J'ai fait le lien entre les Tiles au fur et à mesure des ajout des Tiles.
-Sauf que maintenant je dois attendre la fin des ajouts de Tiles pour faire les liaisons.
+My biggest problem was the approach I used to add the Tiles to the Board.
+I linked the Tiles as I added them.
+Except that now I have to wait for the end of the Tiles additions to make the links.
 
-Bon, je vois que l'exemple et mon input n'ont pas la même forme.
-La solution que je vais ecrire ne sera surement pas compatible avec tout les inputs possible.
+Well, I see that the example and my input are not the same.
+The solution I'm going to write will probably not be compatible with all possible inputs.
 
-Un autre petit souci que je vois se profiler, c'est qu'une fois qu'on change de face sur le cube, les points cardinaux sont un peu chambouler.
-Il va falloir y preter attention.
+Another little problem that I see coming is that once you change the face of the cube, the cardinal points are a little changed.
+We'll have to pay attention to that.
+
+
+It was really hard to make a mental representation of the cube in 3D.
+I had to do some schematics and some calculations to find the right way to go through the surfaces of the cube.
+
+I am really impressed by the performance of the program.
+The answer comes out in ~70ms.

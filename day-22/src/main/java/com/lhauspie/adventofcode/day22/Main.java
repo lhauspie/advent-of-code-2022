@@ -17,6 +17,6 @@ public class Main {
 
     public static long resolveSecondPuzzle() {
         InputStream secondPuzzleInput = ClassLoader.getSystemClassLoader().getResourceAsStream("input.txt");
-        return PuzzleResolver.resolveSecondPuzzle(new Scanner(secondPuzzleInput));
+        return PuzzleResolver.resolveSecondPuzzle(new Scanner(secondPuzzleInput), 50);
     }
 }
