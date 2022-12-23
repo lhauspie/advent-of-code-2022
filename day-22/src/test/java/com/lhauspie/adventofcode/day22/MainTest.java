@@ -8,7 +8,7 @@ public class MainTest {
 
     @Test
     public void resolveFirstPuzzle() {
-        assertEquals(0, Main.resolveFirstPuzzle());
+        assertEquals(67390, Main.resolveFirstPuzzle());
     }
 
     @Test

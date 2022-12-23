@@ -37,6 +37,7 @@
         <module>day-19</module><!-- PERFORMANCE ISSUES -->
         <module>day-20</module>
         <module>day-21</module>
+        <module>day-22</module>
     </modules>
 
     <dependencyManagement>

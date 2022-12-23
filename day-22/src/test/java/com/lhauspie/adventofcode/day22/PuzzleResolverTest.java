@@ -8,11 +8,25 @@ import java.util.Scanner;
 public class PuzzleResolverTest {
 
     String input = """
+                    ...#
+                    .#..
+                    #...
+                    ....
+            ...#.......#
+            ........#...
+            ..#....#....
+            ..........#.
+                    ...#....
+                    .....#..
+                    .#......
+                    ......#.
+            
+            10R5L5R10L4R5L5
             """;
 
     @Test
     public void tryToResolveFirstPuzzleAccordingToInputExample() {
-        Assertions.assertEquals(0, PuzzleResolver.resolveFirstPuzzle(new Scanner(input)));
+        Assertions.assertEquals(6032, PuzzleResolver.resolveFirstPuzzle(new Scanner(input)));
     }
 
     @Test
