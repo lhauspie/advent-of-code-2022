@@ -9,11 +9,11 @@ import java.util.Scanner;
 public class Main {
 
     public static void main(String... args) {
-        InputStream firstPuzzleInput = ClassLoader.getSystemClassLoader().getResourceAsStream("input.txt");
-        System.out.println("First puzzle result : " + resolveFirstPuzzle(new Scanner(firstPuzzleInput)));
+        InputStream puzzleInput = ClassLoader.getSystemClassLoader().getResourceAsStream("input.txt");
+        System.out.println("First puzzle result : " + resolveFirstPuzzle(new Scanner(puzzleInput)));
 
-        InputStream secondPuzzleInput = ClassLoader.getSystemClassLoader().getResourceAsStream("input.txt");
-        System.out.println("Second puzzle result : " + resolveSecondPuzzle(new Scanner(secondPuzzleInput)));
+        InputStream puzzleInput = ClassLoader.getSystemClassLoader().getResourceAsStream("input.txt");
+        System.out.println("Second puzzle result : " + resolveSecondPuzzle(new Scanner(puzzleInput)));
     }
 
     public static int resolveFirstPuzzle(Scanner scanner) {

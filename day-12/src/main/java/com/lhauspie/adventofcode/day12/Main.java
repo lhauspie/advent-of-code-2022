@@ -11,12 +11,12 @@ public class Main {
     }
 
     public static Long resolveFirstPuzzle() {
-        InputStream firstPuzzleInput = ClassLoader.getSystemClassLoader().getResourceAsStream("input.txt");
-        return PuzzleResolver.resolveFirstPuzzle(new Scanner(firstPuzzleInput));
+        InputStream puzzleInput = ClassLoader.getSystemClassLoader().getResourceAsStream("input.txt");
+        return PuzzleResolver.resolveFirstPuzzle(new Scanner(puzzleInput));
     }
 
     public static Long resolveSecondPuzzle() {
-        InputStream secondPuzzleInput = ClassLoader.getSystemClassLoader().getResourceAsStream("input.txt");
-        return PuzzleResolver.resolveSecondPuzzle(new Scanner(secondPuzzleInput));
+        InputStream puzzleInput = ClassLoader.getSystemClassLoader().getResourceAsStream("input.txt");
+        return PuzzleResolver.resolveSecondPuzzle(new Scanner(puzzleInput));
     }
 }
