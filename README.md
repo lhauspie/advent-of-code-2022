@@ -41,3 +41,43 @@ Another thing I realized is that the modeling of a problem remains personal.
 You can always argue with a developer's choices in modeling, so you have to learn to receive this kind of feedback as a developer and not be egotistical.
 
 A quality code is a long way to go, but it's rewarding once it's done.
+
+## TDD
+
+TDD is a practice that ensures that the application's behavior is consistent with that expected by the tests.
+It does not, however, allow to be completely bug free.
+If the test is buggy, the code will inevitably be buggy too.
+
+The great strength of TDD is to start from very simple cases and to complete the cases little by little, which allows to complete the code as we go along to cover all the cases or all the features.
+
+Unfortunately, this approach is not 100% adapted to solving advent of code puzzles.
+Why not? Simply because there are too few test cases and it becomes easy to code unrealistic or even completely wrong tests due to a bad understanding of the problem.
+
+Let's take the example of the day-24 puzzle, it's about counting the minimum number of rounds to go from a starting point to a goal point.
+The statement gives only 1 example and it becomes difficult to imagine other examples while being sure of the expected result.
+Example given in the statement:
+```
+#.######
+#>>.<^<#
+#.<..<<#
+#>v.><>#
+#<^v^^>#
+######.#
+```
+It should give the result `18`.
+
+But how can I be sure that a new example that I would have created myself gives a particular result?
+I would have to do some manual simulations to calculate the result without being sure that I could get to the end of the simulation.
+I'm pretty sure that changing a single blizzard could make it impossible to reach the end point...
+
+TDD is therefore an extraordinary practice that allows you to complete your code as you go along to cover all the cases and let the design emerge.
+But this practice is not very well adapted to solve the puzzles of the advent of code because it is necessary to code very quickly the whole algorithm even to solve a much smaller problem like the following one.
+```
+#.###
+#>.<#
+#.^.#
+###.#
+```
+
+So, as usual, TDD is not a silver bullet to solve all development issues.
+The problem must be splittable into smaller pieces to benefit from the iterative approach of TDD.
