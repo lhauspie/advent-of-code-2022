@@ -40,6 +40,7 @@
         <module>day-22</module>
         <module>day-23</module>
         <module>day-24</module>
+        <module>day-25</module>
     </modules>
 
     <dependencyManagement>

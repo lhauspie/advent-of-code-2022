@@ -81,3 +81,5 @@ But this practice is not very well adapted to solve the puzzles of the advent of
 
 So, as usual, TDD is not a silver bullet to solve all development issues.
 The problem must be splittable into smaller pieces to benefit from the iterative approach of TDD.
+
+After looking the day 25 puzzle, it's a perfect example where TDD is a good approach to develop the parsing algorithm because there is a lot of examples, and it's pretty simple to create new cases.
